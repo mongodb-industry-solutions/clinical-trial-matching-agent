@@ -1,0 +1,108 @@
+# Kanopy security and ownership (requires web-app chart v4.30.0+)
+security:
+  dataClassification: "Internal"
+  dataDesignation: ["MI"]
+
+ownership:
+  driEmail: francesc.mateu@mongodb.com
+
+env:
+  NODE_ENV: production
+  APP_ENV: production
+  AWS_REGION: us-east-1
+  PORT: "8080"
+  # The browser talks to Next.js; Next.js talks to the backend sidecar over localhost.
+  CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL: http://localhost:8000
+
+sidecarContainers:
+  - name: backend
+    image: 275662791714.dkr.ecr.us-east-1.amazonaws.com/kanopy-session-backend:latest
+    containerPort: 8000
+    env:
+      - name: PORT
+        value: "8000"
+      - name: APP_NAME
+        value: clinical-trial-matching-agent
+      - name: NODE_ENV
+        value: production
+      - name: APP_ENV
+        value: production
+      - name: AWS_REGION
+        value: us-east-1
+      - name: ORIGINS
+        value: http://localhost:8080
+      - name: PHARMA_STRICT_CANONICAL_MODE
+        value: "true"
+      - name: CLINICAL_TRIALS_SERVICE_SYNC_ON_STARTUP
+        value: "false"
+      - name: CLINICAL_TRIALS_SERVICE_BOOTSTRAP_LIMIT
+        value: "80"
+      - name: MONGODB_URI
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: MONGODB_URI
+      - name: DATABASE_NAME
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: DATABASE_NAME
+      - name: CLINICAL_TRIALS_MONGODB_URI
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: CLINICAL_TRIALS_MONGODB_URI
+      - name: CLINICAL_TRIALS_DATABASE_NAME
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: CLINICAL_TRIALS_DATABASE_NAME
+      - name: LEAFY_HOSPITAL_MONGODB_URI
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: LEAFY_HOSPITAL_MONGODB_URI
+      - name: LEAFY_HOSPITAL_DATABASE_NAME
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: LEAFY_HOSPITAL_DATABASE_NAME
+      - name: VOYAGE_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: VOYAGE_API_KEY
+      - name: CHATCOMPLETIONS_MODEL_ID
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: CHATCOMPLETIONS_MODEL_ID
+      - name: EMBEDDINGS_MODEL_ID
+        valueFrom:
+          secretKeyRef:
+            name: clinical-trial-matching-agent-production
+            key: EMBEDDINGS_MODEL_ID
+
+serviceAccount:
+  enabled: true
+  irsa:
+    accountId: "275662791714"
+    roleName: "kanopy-prod-cicd-irsa"
+
+livenessProbe:
+  httpGet:
+    path: /api/ping
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /api/health
+    port: 8080
+  initialDelaySeconds: 20
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 6

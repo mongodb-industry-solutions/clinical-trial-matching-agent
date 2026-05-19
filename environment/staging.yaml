@@ -4,27 +4,33 @@ security:
   dataDesignation: ["MI"]
 
 ownership:
-  driEmail: owner.email@mongodb.com
+  driEmail: francesc.mateu@mongodb.com
 
 env:
-  NODE_ENV: staging
+  NODE_ENV: production
+  APP_ENV: staging
   # AWS region for IRSA (no credentials needed)
   AWS_REGION: us-east-1
-  # Backend API URL for frontend to connect to backend health check - get <service-name> using kubectl get services
-  BACKEND_URL: http://<demo-name>-backend-web-app:80 # or http://localhost:8000 if multicontainer pod is setup and backend is running on 8000
-  COLLECTION_NAME: test-collection
+  # The frontend is the public Kanopy container and should listen on 8080.
+  PORT: "8080"
+  # The Next.js proxy forwards browser requests to this backend service.
+  CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL: http://<demo-name>-backend-web-app:80
 
 ## Single Pod Containers
 envSecrets:
   # MongoDB Configuration
-  MONGODB_URI: <secret-group>
-  DATABASE_NAME: <secret-group>
-  VOYAGE_API_KEY: <secret-group>
+  MONGODB_URI: clinical-trial-matching-agent-staging
+  DATABASE_NAME: clinical-trial-matching-agent-staging
+  CLINICAL_TRIALS_MONGODB_URI: clinical-trial-matching-agent-staging
+  CLINICAL_TRIALS_DATABASE_NAME: clinical-trial-matching-agent-staging
+  LEAFY_HOSPITAL_MONGODB_URI: clinical-trial-matching-agent-staging
+  LEAFY_HOSPITAL_DATABASE_NAME: clinical-trial-matching-agent-staging
+  VOYAGE_API_KEY: clinical-trial-matching-agent-staging
   # Bedrock Inference Profiles (see cloud-cost-tracking.md)
-  CHATCOMPLETIONS_MODEL_ID: <secret-group>
-  EMBEDDINGS_MODEL_ID: <secret-group>
+  CHATCOMPLETIONS_MODEL_ID: clinical-trial-matching-agent-staging
+  EMBEDDINGS_MODEL_ID: clinical-trial-matching-agent-staging
 
-## should be used in case of multiple sidecar containers
+## For the multi-container deployment, use environment/staging.multicontainer.yaml instead.
 # sidecarContainers:
 #   - name: backend
 #     image: 275662791714.dkr.ecr.us-east-1.amazonaws.com/kanopy-session-backend:latest
@@ -57,6 +63,24 @@ serviceAccount:
   irsa:
     accountId: "275662791714"
     roleName: "kanopy-staging-cicd-irsa"
+
+livenessProbe:
+  httpGet:
+    path: /api/ping
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /api/health
+    port: 8080
+  initialDelaySeconds: 20
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 6
 
 ## For GCP this, example setup here is for manufacturing
 

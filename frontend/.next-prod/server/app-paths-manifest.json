@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/[...path]/route": "app/api/[...path]/route.js",
+  "/api/backend/[...path]/route": "app/api/backend/[...path]/route.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/api/ping/route": "app/api/ping/route.js",
+  "/api/route": "app/api/route.js",
+  "/api/trial-geo/[nctId]/route": "app/api/trial-geo/[nctId]/route.js",
+  "/discovery/page": "app/discovery/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/governance/page": "app/governance/page.js",
+  "/literature/page": "app/literature/page.js",
+  "/match/page": "app/match/page.js",
+  "/page": "app/page.js",
+  "/patients/page": "app/patients/page.js",
+  "/pharmaNavigator/[[...slug]]/page": "app/pharmaNavigator/[[...slug]]/page.js"
+}

@@ -1,0 +1,133 @@
+.leafy-shell {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.leafy-shell__content {
+  padding-top: 12px;
+}
+
+.leafy-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.leafy-header__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.leafy-header__brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.leafy-header__brand img {
+  width: auto;
+  height: 44px;
+}
+
+.leafy-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.leafy-header__nav-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.leafy-header__nav-item:last-child {
+  color: #111827;
+}
+
+.leafy-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.leafy-header__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.leafy-header__user-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.leafy-header__user-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.leafy-header__user-copy strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.leafy-header__user-copy span {
+  font-size: 13px;
+  color: #374151;
+  margin-top: 4px;
+}
+
+@media (max-width: 1180px) {
+  .leafy-header__nav {
+    display: none;
+  }
+
+  .leafy-header__inner {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 720px) {
+  .leafy-header__inner {
+    padding: 12px 16px;
+  }
+
+  .leafy-header__user-card {
+    padding: 8px 12px;
+  }
+
+  .leafy-header__user-copy {
+    display: none;
+  }
+}

@@ -1,0 +1,693 @@
+.patient-record-shell {
+  border: 1px solid #dbe7f0;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(193, 255, 222, 0.18), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 24px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.patient-record-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.patient-record-head-compact {
+  margin-bottom: 16px;
+}
+
+.patient-record-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #00684a;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.patient-record-head h3 {
+  margin: 0 0 8px;
+  color: #102a43;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.patient-record-head p {
+  margin: 0;
+  color: #5b6f84;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 860px;
+}
+
+.patient-record-status {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  border: 1px solid transparent;
+}
+
+.patient-record-status.ready {
+  background: #dff9ea;
+  color: #0f7a41;
+  border-color: #a7e5bf;
+}
+
+.patient-record-status.review {
+  background: #fff4d8;
+  color: #8a5a00;
+  border-color: #f1d28e;
+}
+
+.patient-record-status.limited {
+  background: #eef4ff;
+  color: #365fa8;
+  border-color: #c7d8f7;
+}
+
+.patient-record-status.neutral {
+  background: #edf4fa;
+  color: #486173;
+  border-color: #d8e3ec;
+}
+
+.patient-record-meta-row,
+.patient-record-chip-row,
+.patient-record-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.patient-record-meta-row {
+  margin-bottom: 18px;
+}
+
+.patient-record-meta-chip,
+.patient-record-chip,
+.patient-record-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid #d8e3ec;
+  background: #ffffff;
+  color: #355163;
+}
+
+.patient-record-chip.success {
+  background: #e9fbef;
+  border-color: #afe7c2;
+  color: #0f7a41;
+}
+
+.patient-record-chip.keyword {
+  background: #f4f9ff;
+  border-color: #d7e5f4;
+}
+
+.patient-record-chip.neutral {
+  background: #f6f8fb;
+  border-color: #dbe6ee;
+}
+
+.patient-record-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.patient-record-view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.patient-record-view-tab {
+  border: 1px solid #d8e3ec;
+  background: #ffffff;
+  color: #486173;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.patient-record-view-tab:hover:not(:disabled) {
+  border-color: #9fc8b6;
+  color: #0f7a41;
+}
+
+.patient-record-view-tab.active {
+  background: #e8fbef;
+  border-color: #83d0ab;
+  color: #0f7a41;
+}
+
+.patient-record-view-tab:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.patient-record-summary-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid #dbe7f0;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.patient-record-summary-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #7d90a3;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.patient-record-summary-card strong {
+  color: #102a43;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.patient-record-section {
+  margin-top: 24px;
+}
+
+.patient-record-section-primary {
+  margin-top: 0;
+}
+
+.patient-record-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.patient-record-section-head h4 {
+  margin: 0 0 6px;
+  color: #102a43;
+  font-size: 24px;
+}
+
+.patient-record-section-head p {
+  margin: 0;
+  color: #5b6f84;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+.patient-record-section-note {
+  color: #4d6779;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.patient-record-loading,
+.patient-record-empty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  border: 1px dashed #c9d6e3;
+  border-radius: 16px;
+  background: #f8fbff;
+  color: #597287;
+  font-weight: 600;
+}
+
+.patient-record-empty-warning {
+  border-style: solid;
+  border-color: #f4d1a2;
+  background: #fff8ef;
+  color: #9a5e00;
+}
+
+.patient-record-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 3px solid rgba(0, 104, 74, 0.18);
+  border-top-color: #00684a;
+  animation: patient-record-spin 0.9s linear infinite;
+}
+
+@keyframes patient-record-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.patient-record-filter-bar {
+  margin: 18px 0;
+}
+
+.patient-record-filter-chip {
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.patient-record-filter-chip:hover {
+  transform: translateY(-1px);
+  border-color: #9fc8b6;
+}
+
+.patient-record-filter-chip.active {
+  background: #e8fbef;
+  border-color: #83d0ab;
+  color: #0f7a41;
+}
+
+.patient-record-filter-condition.active { background: #fef2f2; border-color: #f3b7b7; color: #a51f1f; }
+.patient-record-filter-medication.active { background: #eff6ff; border-color: #c3dafe; color: #1e40af; }
+.patient-record-filter-lab.active { background: #f5f3ff; border-color: #d7c7fb; color: #6d28d9; }
+.patient-record-filter-encounter.active { background: #ecfdf5; border-color: #b7eccd; color: #0f766e; }
+.patient-record-filter-procedure.active { background: #fffbeb; border-color: #f7dfa1; color: #a16207; }
+.patient-record-filter-immunization.active { background: #ecfeff; border-color: #b6eff5; color: #0f766e; }
+.patient-record-filter-allergy.active { background: #fff1f2; border-color: #f8c1cb; color: #be123c; }
+
+.patient-record-date-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.patient-record-date-group,
+.patient-record-domain,
+.patient-record-raw-resources,
+.patient-record-resource-item,
+.patient-record-screening-card,
+.patient-record-screening-note {
+  border: 1px solid #dbe7f0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.patient-record-date-group summary,
+.patient-record-domain summary,
+.patient-record-raw-resources > summary,
+.patient-record-resource-item > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.patient-record-date-group summary::-webkit-details-marker,
+.patient-record-domain summary::-webkit-details-marker,
+.patient-record-raw-resources > summary::-webkit-details-marker,
+.patient-record-resource-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.patient-record-date-group > summary,
+.patient-record-domain > summary,
+.patient-record-raw-resources > summary {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #102a43;
+  font-weight: 800;
+}
+
+.patient-record-date-events,
+.patient-record-domain-list,
+.patient-record-resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 18px 18px;
+}
+
+.patient-record-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4px auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #f8fbff;
+  border: 1px solid #e1eaf2;
+}
+
+.patient-record-event-rail {
+  min-height: 100%;
+  border-radius: 999px;
+  background: #b8d7c7;
+}
+
+.patient-record-event-condition .patient-record-event-rail { background: #f3b7b7; }
+.patient-record-event-medication .patient-record-event-rail { background: #c3dafe; }
+.patient-record-event-lab .patient-record-event-rail { background: #d7c7fb; }
+.patient-record-event-encounter .patient-record-event-rail { background: #b7eccd; }
+.patient-record-event-procedure .patient-record-event-rail { background: #f7dfa1; }
+.patient-record-event-immunization .patient-record-event-rail { background: #b6eff5; }
+.patient-record-event-allergy .patient-record-event-rail { background: #f8c1cb; }
+
+.patient-record-event-type {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.patient-record-event-type-condition { background: #fef2f2; color: #991b1b; }
+.patient-record-event-type-medication { background: #eff6ff; color: #1e40af; }
+.patient-record-event-type-lab { background: #f5f3ff; color: #6d28d9; }
+.patient-record-event-type-encounter { background: #ecfdf5; color: #0f766e; }
+.patient-record-event-type-procedure { background: #fffbeb; color: #a16207; }
+.patient-record-event-type-immunization { background: #ecfeff; color: #0f766e; }
+.patient-record-event-type-allergy { background: #fff1f2; color: #be123c; }
+.patient-record-event-type-other { background: #f1f5f9; color: #475569; }
+
+.patient-record-event-body strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #102a43;
+  font-size: 15px;
+}
+
+.patient-record-event-body p {
+  margin: 0;
+  color: #5b6f84;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.patient-record-domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.patient-record-domain-item {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fbff;
+  border: 1px solid #e2ecf4;
+}
+
+.patient-record-domain-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #102a43;
+  font-size: 14px;
+}
+
+.patient-record-domain-item span {
+  color: #5b6f84;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.patient-record-screening-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 132px));
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.patient-record-screening-card {
+  overflow: hidden;
+}
+
+.patient-record-screening-card.compact {
+  border-radius: 16px;
+}
+
+.patient-record-screening-thumb {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(180deg, #f4f7fb 0%, #edf2f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-record-screening-thumb.compact {
+  aspect-ratio: 0.85 / 1;
+}
+
+.patient-record-screening-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.patient-record-screening-placeholder {
+  color: #7890a5;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.patient-record-screening-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.patient-record-screening-card-body.compact {
+  padding: 10px 12px 12px;
+}
+
+.patient-record-screening-card-body strong {
+  color: #102a43;
+  font-size: 14px;
+}
+
+.patient-record-screening-card-body span {
+  color: #60758a;
+  font-size: 12px;
+}
+
+.patient-record-screening-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.patient-record-screening-note {
+  padding: 18px 20px;
+}
+
+.patient-record-screening-note h5 {
+  margin: 0 0 10px;
+  color: #102a43;
+  font-size: 16px;
+}
+
+.patient-record-screening-note p {
+  margin: 0;
+  color: #334e68;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.patient-record-raw-resources {
+  margin-top: 26px;
+}
+
+.patient-record-resource-item > summary {
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.patient-record-resource-item > summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.patient-record-resource-item > summary strong {
+  color: #102a43;
+  font-size: 15px;
+}
+
+.patient-record-resource-item > summary span {
+  color: #5f768b;
+  font-size: 13px;
+}
+
+.patient-record-resource-item pre {
+  margin: 0;
+  padding: 0 16px 16px;
+  overflow: auto;
+  color: #102a43;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .patient-record-head {
+    flex-direction: column;
+  }
+
+  .patient-record-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .patient-record-shell {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .patient-record-head h3 {
+    font-size: 28px;
+  }
+
+  .patient-record-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-record-section-head {
+    flex-direction: column;
+  }
+
+  .patient-record-event {
+    grid-template-columns: 4px 1fr;
+  }
+
+  .patient-record-event-type {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .patient-record-event-body {
+    grid-column: 2;
+  }
+}
+
+/* ── Product polish follow-up ── */
+.patient-record-shell {
+  border-color: #d9e3eb;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.patient-record-head h3 {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+.patient-record-head p {
+  color: #5d7082;
+  max-width: 920px;
+}
+
+.patient-record-meta-chip,
+.patient-record-chip,
+.patient-record-filter-chip {
+  border-color: #d9e3eb;
+  background: #ffffff;
+  color: #42576a;
+}
+
+.patient-record-chip.neutral,
+.patient-record-filter-chip.active {
+  background: #f7fbfd;
+}
+
+.patient-record-summary-card,
+.patient-record-date-group,
+.patient-record-domain,
+.patient-record-raw-resources,
+.patient-record-resource-item,
+.patient-record-screening-card,
+.patient-record-screening-note,
+.patient-record-domain-item {
+  border-color: #d9e3eb;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.patient-record-section-head h4 {
+  font-size: 22px;
+}
+
+.patient-record-section-head p,
+.patient-record-domain-item span,
+.patient-record-event-body p,
+.patient-record-screening-note p,
+.patient-record-resource-item > summary span {
+  color: #5d7082;
+}
+
+.patient-record-loading,
+.patient-record-empty {
+  background: #f8fbfd;
+  border-color: #d1dde7;
+}
+
+.patient-record-event {
+  background: #fbfdff;
+  border-color: #e3ebf2;
+}
+
+.patient-record-event-type {
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.patient-record-screening-strip {
+  grid-template-columns: repeat(auto-fit, minmax(96px, 112px));
+  gap: 10px;
+}
+
+.patient-record-screening-card.compact {
+  border-radius: 14px;
+}
+
+.patient-record-screening-thumb {
+  background: #f5f8fb;
+}
+
+.patient-record-screening-thumb.compact {
+  aspect-ratio: 0.78 / 1;
+}
+
+.patient-record-screening-card-body.compact {
+  padding: 8px 10px 10px;
+}
+
+.patient-record-screening-card-body.compact strong {
+  font-size: 13px;
+}
+
+.patient-record-screening-card-body.compact span {
+  font-size: 11px;
+}
+
+.patient-record-resource-item pre {
+  background: #fbfdff;
+  border-top: 1px solid #e6edf3;
+}

@@ -1,0 +1,146 @@
+kind: pipeline
+type: kubernetes
+name: staging-combined
+
+trigger:
+  branch:
+    - staging
+  event:
+    - push
+
+steps:
+  - name: publish-backend
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: industrysolutions/clinical-trial-matching-agent-backend
+      dockerfile: Dockerfile.backend
+      context: .
+      tags:
+        - staging-latest
+        - staging-${DRONE_COMMIT_SHA:0:7}
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+
+  - name: publish-frontend
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: industrysolutions/clinical-trial-matching-agent-frontend
+      dockerfile: Dockerfile.frontend
+      context: .
+      tags:
+        - staging-latest
+        - staging-${DRONE_COMMIT_SHA:0:7}
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+
+  - name: deploy-combined-staging
+    image: public.ecr.aws/kanopy/drone-helm:v3
+    settings:
+      chart: mongodb/web-app
+      chart_version: 4.30.0
+      add_repos: ["mongodb=https://10gen.github.io/helm-charts"]
+      namespace: industrysolutions
+      release: clinical-trial-matching-agent-staging
+      values_files: ["environment/staging.multicontainer.yaml"]
+      values:
+        - "sidecarContainers[0].name=backend"
+        - "sidecarContainers[0].image=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/clinical-trial-matching-agent-backend:staging-${DRONE_COMMIT_SHA:0:7}"
+        - "sidecarContainers[0].containerPort=8000"
+        - "image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/clinical-trial-matching-agent-frontend"
+        - "image.tag=staging-${DRONE_COMMIT_SHA:0:7}"
+        - "ingress.enabled=true"
+        - "ingress.hosts[0]=clinical-trial-matching-agent.industrysolutions.staging.corp.mongodb.com"
+        - "mesh.enabled=true"
+        - "resources.limits.cpu=500m"
+        - "resources.limits.memory=512Mi"
+        - "resources.requests.cpu=100m"
+        - "resources.requests.memory=256Mi"
+        - "sidecarContainers[0].resources.limits.cpu=500m"
+        - "sidecarContainers[0].resources.limits.memory=512Mi"
+        - "sidecarContainers[0].resources.requests.cpu=100m"
+        - "sidecarContainers[0].resources.requests.memory=256Mi"
+      api_server: https://api.staging.corp.mongodb.com
+      kubernetes_token:
+        from_secret: staging_kubernetes_token
+
+---
+kind: pipeline
+type: kubernetes
+name: production-combined
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+steps:
+  - name: publish-backend
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: industrysolutions/clinical-trial-matching-agent-backend
+      dockerfile: Dockerfile.backend
+      context: .
+      tags:
+        - prod-latest
+        - prod-${DRONE_COMMIT_SHA:0:7}
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+
+  - name: publish-frontend
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: industrysolutions/clinical-trial-matching-agent-frontend
+      dockerfile: Dockerfile.frontend
+      context: .
+      tags:
+        - prod-latest
+        - prod-${DRONE_COMMIT_SHA:0:7}
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+
+  - name: deploy-combined-production
+    image: public.ecr.aws/kanopy/drone-helm:v3
+    settings:
+      chart: mongodb/web-app
+      chart_version: 4.30.0
+      add_repos: ["mongodb=https://10gen.github.io/helm-charts"]
+      namespace: industrysolutions
+      release: clinical-trial-matching-agent-production
+      values_files: ["environment/production.multicontainer.yaml"]
+      values:
+        - "sidecarContainers[0].name=backend"
+        - "sidecarContainers[0].image=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/clinical-trial-matching-agent-backend:prod-${DRONE_COMMIT_SHA:0:7}"
+        - "sidecarContainers[0].containerPort=8000"
+        - "image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/clinical-trial-matching-agent-frontend"
+        - "image.tag=prod-${DRONE_COMMIT_SHA:0:7}"
+        - "ingress.enabled=true"
+        - "ingress.hosts[0]=clinical-trial-matching-agent.industrysolutions.prod.corp.mongodb.com"
+        - "mesh.enabled=true"
+        - "resources.limits.cpu=500m"
+        - "resources.limits.memory=512Mi"
+        - "resources.requests.cpu=150m"
+        - "resources.requests.memory=256Mi"
+        - "sidecarContainers[0].resources.limits.cpu=500m"
+        - "sidecarContainers[0].resources.limits.memory=512Mi"
+        - "sidecarContainers[0].resources.requests.cpu=150m"
+        - "sidecarContainers[0].resources.requests.memory=256Mi"
+      api_server: https://api.prod.corp.mongodb.com
+      kubernetes_token:
+        from_secret: prod_kubernetes_token

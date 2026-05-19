@@ -17,8 +17,12 @@ class MongoDBConnector:
 
     def __init__(self, uri=None, database_name=None, appname=None):
         """ Initialize the MongoDBConnector instance. """
-        self.uri = uri or os.getenv("MONGODB_URI")
-        self.database_name = database_name or os.getenv("DATABASE_NAME")
+        self.uri = uri or os.getenv("CLINICAL_TRIALS_MONGODB_URI") or os.getenv("MONGODB_URI")
+        self.database_name = (
+            database_name
+            or os.getenv("CLINICAL_TRIALS_DATABASE_NAME")
+            or os.getenv("DATABASE_NAME")
+        )
         self.appname = appname or os.getenv("APP_NAME")
         self.client = MongoClient(self.uri, appname=self.appname)
         self.db = self.client[self.database_name]

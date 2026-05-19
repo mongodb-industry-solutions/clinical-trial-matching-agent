@@ -1,6 +1,7 @@
 FROM python:3.13-slim
 
 WORKDIR /
+ENV PORT=8000
 
 # uv installation
 RUN pip install uv
@@ -14,7 +15,8 @@ RUN uv sync --no-dev
 # Copy the rest of the backend code
 COPY ./backend/ .
 
-# if using multi-container setup expose 8000 instead
-EXPOSE 8080
+# The backend runs as a Kanopy sidecar on 8000 by default, but can be
+# promoted to a standalone pod by setting PORT=8080 at runtime.
+EXPOSE 8000 8080
 
-CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["sh", "-c", "uv run uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]

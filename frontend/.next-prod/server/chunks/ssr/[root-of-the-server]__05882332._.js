@@ -1,0 +1,3 @@
+module.exports=[93695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},62212,a=>{a.n(a.i(66114))},65198,a=>{"use strict";a.s([])},98259,a=>{"use strict";a.s(["default",()=>d]),a.i(70396);var b=a.i(73727);function c(a){return Array.isArray(a)?a[0]||"":a||""}async function d({searchParams:a}){let d=await a,e=c(d?.patientRef)||c(d?.patient)||"",f=c(d?.appointmentId)||c(d?.appointmentID)||"",g=c(d?.patientId)||c(d?.patientID)||"",h=new URLSearchParams;h.set("space","patient"),e&&h.set("patientRef",e),f&&h.set("appointmentId",f),g&&h.set("patientId",g),(0,b.redirect)(`/pharmaNavigator?${h.toString()}`)}}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__05882332._.js.map

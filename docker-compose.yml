@@ -1,25 +1,36 @@
 services:
-  demoname-backend:
+  clinical-trial-matching-agent-backend:
     build:
       context: .
       no_cache: true
       dockerfile: Dockerfile.backend
-    image: imagename-backend:latest
+    image: clinical-trial-matching-agent-backend:latest
+    env_file:
+      - backend/.env
     volumes:
       - ~/.aws/credentials:/root/.aws/credentials:ro
       - ~/.aws/config:/root/.aws/config:ro
       - ~/.aws/sso/cache:/root/.aws/sso/cache:rw  # Only make cache writable
+    environment:
+      PORT: 8000
     ports:
       - "8000:8000"
     restart: always
-    container_name: demoname-backend
-  demoname-frontend:
+    container_name: clinical-trial-matching-agent-backend
+  clinical-trial-matching-agent-frontend:
     build:
       context: .
       no_cache: true
       dockerfile: Dockerfile.frontend
-    image: imagename-frontend:latest
+    image: clinical-trial-matching-agent-frontend:latest
+    env_file:
+      - frontend/.env.local
+    depends_on:
+      - clinical-trial-matching-agent-backend
+    environment:
+      PORT: 8080
+      CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL: http://clinical-trial-matching-agent-backend:8000
     ports:
-      - "3000:3000"
+      - "3014:8080"
     restart: always
-    container_name: demoname-frontend
+    container_name: clinical-trial-matching-agent-frontend

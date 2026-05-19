@@ -1,0 +1,633 @@
+{
+  "benchmarkPackId": "breast_micro_benchmark_20260404_175946_125693",
+  "generatedAt": "2026-04-04T20:00:50.738655Z",
+  "gitCommit": "ba83d958173bfb970247f2afa65ff13307e71108",
+  "trialRuntimeTag": "clinical-trials-canonical-runtime",
+  "reviewMethod": "assistant_adjudicated_from_frozen_canonical_runtime_v1",
+  "contractVersions": {
+    "matcherVersion": "ba83d958173bfb970247f2afa65ff13307e71108",
+    "runtimeMode": "canonical_only",
+    "populationModes": [
+      "authoritative_oncology"
+    ],
+    "legacyBehaviorAllowed": false,
+    "legacyInputsUsed": [],
+    "trialContractVersion": "ctgov_det_ingest_v1",
+    "patientEvidenceProfileVersion": "patient_evidence_profile_v2",
+    "patientMatchProfileVersion": "patient_match_profile_v2",
+    "ruleFamilyRegistryVersion": "2026-04-03",
+    "trialVersionIds": {
+      "NCT00002579": "NCT00002579::d10bb1f8fa06a07f",
+      "NCT00127205": "NCT00127205::28c5df3793fa872d",
+      "NCT00382070": "NCT00382070::5792f7f57782e583",
+      "NCT00393939": "NCT00393939::eb9f6969e8b563fa",
+      "NCT00516425": "NCT00516425::af7c0fce3adde362",
+      "NCT00661102": "NCT00661102::14254bf083cba93a",
+      "NCT00688194": "NCT00688194::79a004ff591f1234",
+      "NCT00808522": "NCT00808522::6b200600ed540463",
+      "NCT00888082": "NCT00888082::2b3a4bdf1e78deb7",
+      "NCT00911456": "NCT00911456::6b1f0f21bca8b152",
+      "NCT01519700": "NCT01519700::d46c36d848b77c2d",
+      "NCT01613482": "NCT01613482::17f338b664101728",
+      "NCT03155997": "NCT03155997::22410328d5d5fa90",
+      "NCT03901339": "NCT03901339::18db57764f8c6897",
+      "NCT04403529": "NCT04403529::aeaf9b784539ac5e",
+      "NCT05114720": "NCT05114720::8fb2e6de52cae5a6",
+      "NCT06126640": "NCT06126640::82b73e9e3a136665",
+      "NCT06519370": "NCT06519370::a9d2be57beacf9ff",
+      "NCT06884254": "NCT06884254::bde5e0c0e43409f6"
+    }
+  },
+  "cases": {
+    "candidate": {
+      "showcaseCase": "candidate",
+      "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+      "trialId": "NCT00002579",
+      "direction": "patient_to_trials",
+      "populationMode": "authoritative_oncology",
+      "benchmarkPackId": "breast_micro_benchmark_20260404_175946_125693",
+      "patientSummary": {
+        "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+        "patientName": "Franchesca574 Harvey63",
+        "linkageStatus": "unlinked",
+        "runtimeReadiness": {
+          "mode": "authoritative_oncology",
+          "runnable": true,
+          "reasonIfBlocked": null,
+          "linkageStatus": "unlinked",
+          "criticalConflictCount": 0,
+          "benchmarkRunnable": true,
+          "outreachRunnable": false,
+          "reasonIfBenchmarkBlocked": null,
+          "reasonIfOutreachBlocked": "linkage_status::unlinked"
+        },
+        "cohortMembership": {
+          "authoritativeBreastOncology": true,
+          "retailOutreachReady": false,
+          "pharmacyPrescreen": false,
+          "screeningOnly": false
+        }
+      },
+      "trialSummary": {
+        "trialId": "NCT00002579",
+        "title": "Tamoxifen Following Combination Chemotherapy in Treating Women With Operable Invasive Breast Cancer",
+        "compileStatus": "ready_auto",
+        "runtimeReadiness": {
+          "runnable": true,
+          "runtimeState": "runtime_ready_deterministic",
+          "reasonIfBlocked": null,
+          "deterministicPatientImpactingCount": 2,
+          "manualPatientImpactingCount": 0,
+          "unsupportedPatientImpactingCount": 0,
+          "unresolvedPatientImpactingCount": 0,
+          "coveragePct": 100.0,
+          "hasExclusionParseGap": false
+        }
+      },
+      "overallDecision": "candidate",
+      "whyThisShowcase": "Shows a clean canonical pass on currently supported core families.",
+      "canonicalTreeExcerpt": [
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00002579::d10bb1f8fa06a07f::STRUCT::SEX",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": null,
+          "key": "demographics.sex.any_of",
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "eligibility.healthy_volunteers.allowed",
+          "criterionId": "NCT00002579::d10bb1f8fa06a07f::STRUCT::HEALTHY_VOLUNTEERS",
+          "key": null,
+          "status": "met",
+          "reason": "Derived healthy-volunteer status from curated clinical context.",
+          "evaluator": "eval_eligibility_healthy_volunteers_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "oncology.primary_cancer.required",
+          "criterionId": null,
+          "key": "oncology.primary_cancer.any_of",
+          "status": "met",
+          "reason": "Compared curated primary cancer signal to trial requirement.",
+          "evaluator": "eval_oncology_primary_cancer_required_v1",
+          "evidenceRefs": [
+            "Condition/09287d9b-a7e5-49d6-afde-ac551b60547a",
+            "Observation/2a6cae9b-bd6e-42eb-8263-b4ddb2ee53cb",
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672"
+          ]
+        }
+      ],
+      "criterionLevelExplanation": [
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00002579::d10bb1f8fa06a07f::STRUCT::SEX",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": null,
+          "key": "demographics.sex.any_of",
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "eligibility.healthy_volunteers.allowed",
+          "criterionId": "NCT00002579::d10bb1f8fa06a07f::STRUCT::HEALTHY_VOLUNTEERS",
+          "key": null,
+          "status": "met",
+          "reason": "Derived healthy-volunteer status from curated clinical context.",
+          "evaluator": "eval_eligibility_healthy_volunteers_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "oncology.primary_cancer.required",
+          "criterionId": null,
+          "key": "oncology.primary_cancer.any_of",
+          "status": "met",
+          "reason": "Compared curated primary cancer signal to trial requirement.",
+          "evaluator": "eval_oncology_primary_cancer_required_v1",
+          "evidenceRefs": [
+            "Condition/09287d9b-a7e5-49d6-afde-ac551b60547a",
+            "Observation/2a6cae9b-bd6e-42eb-8263-b4ddb2ee53cb",
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": null,
+          "criterionId": "NCT00002579::d10bb1f8fa06a07f::INC::001",
+          "key": null,
+          "status": "not_patient_rule",
+          "reason": "Criterion is context-only or otherwise not a patient rule.",
+          "evaluator": null,
+          "evidenceRefs": []
+        }
+      ],
+      "reviewNotes": "Supported deterministic and manual checks align with a candidate posture in the frozen canonical run.",
+      "evidenceCompletenessPct": 100.0,
+      "traceSummary": {
+        "metCount": 4,
+        "notMetCount": 0,
+        "unknownCount": 0,
+        "manualReviewRequiredCount": 0,
+        "fillableByQuestionnaireCount": 0,
+        "blockedByLinkageConflictCount": 0,
+        "notPatientRuleCount": 1
+      }
+    },
+    "excluded": {
+      "showcaseCase": "excluded",
+      "patientRef": "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda",
+      "trialId": "NCT00911456",
+      "direction": "patient_to_trials",
+      "populationMode": "authoritative_oncology",
+      "benchmarkPackId": "breast_micro_benchmark_20260404_175946_125693",
+      "patientSummary": {
+        "patientRef": "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda",
+        "patientName": "Fermin479 Auer97",
+        "linkageStatus": "unlinked",
+        "runtimeReadiness": {
+          "mode": "authoritative_oncology",
+          "runnable": true,
+          "reasonIfBlocked": null,
+          "linkageStatus": "unlinked",
+          "criticalConflictCount": 0,
+          "benchmarkRunnable": true,
+          "outreachRunnable": false,
+          "reasonIfBenchmarkBlocked": null,
+          "reasonIfOutreachBlocked": "linkage_status::unlinked"
+        },
+        "cohortMembership": {
+          "authoritativeBreastOncology": true,
+          "retailOutreachReady": false,
+          "pharmacyPrescreen": false,
+          "screeningOnly": false
+        }
+      },
+      "trialSummary": {
+        "trialId": "NCT00911456",
+        "title": "Can 3D Ultrasound Be Used Reproducibly by Radiation Therapists in Partial Breast Image-Guided Radiation Therapy",
+        "compileStatus": "ready_auto",
+        "runtimeReadiness": {
+          "runnable": true,
+          "runtimeState": "runtime_ready_with_manual",
+          "reasonIfBlocked": null,
+          "deterministicPatientImpactingCount": 6,
+          "manualPatientImpactingCount": 2,
+          "unsupportedPatientImpactingCount": 0,
+          "unresolvedPatientImpactingCount": 0,
+          "coveragePct": 75.0,
+          "hasExclusionParseGap": false
+        }
+      },
+      "overallDecision": "excluded",
+      "whyThisShowcase": "Shows a clear deterministic exclusion with evidence trace.",
+      "canonicalTreeExcerpt": [
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.max",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MAX",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.max",
+          "criterionId": null,
+          "key": "demographics.age_years.max",
+          "status": "not_met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::001",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::002",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        }
+      ],
+      "criterionLevelExplanation": [
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.max",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MAX",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.max",
+          "criterionId": null,
+          "key": "demographics.age_years.max",
+          "status": "not_met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::001",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::002",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::EXC::001",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.inclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.min",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MIN",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient age to minimum age rule.",
+          "evaluator": "eval_demographics_age_min_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.min",
+          "criterionId": null,
+          "key": "demographics.age_years.min",
+          "status": "met",
+          "reason": "Compared patient age to minimum age rule.",
+          "evaluator": "eval_demographics_age_min_v1",
+          "evidenceRefs": [
+            "Patient/72c586fa-c7d0-4c60-b81d-9c27aa984eda"
+          ]
+        }
+      ],
+      "reviewNotes": "At least one supported criterion excludes the patient in the frozen canonical run.",
+      "evidenceCompletenessPct": 83.3,
+      "traceSummary": {
+        "metCount": 6,
+        "notMetCount": 4,
+        "unknownCount": 0,
+        "manualReviewRequiredCount": 2,
+        "fillableByQuestionnaireCount": 0,
+        "blockedByLinkageConflictCount": 0,
+        "notPatientRuleCount": 0
+      }
+    },
+    "manual_review_required": {
+      "showcaseCase": "manual_review_required",
+      "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+      "trialId": "NCT00911456",
+      "direction": "patient_to_trials",
+      "populationMode": "authoritative_oncology",
+      "benchmarkPackId": "breast_micro_benchmark_20260404_175946_125693",
+      "patientSummary": {
+        "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+        "patientName": "Franchesca574 Harvey63",
+        "linkageStatus": "unlinked",
+        "runtimeReadiness": {
+          "mode": "authoritative_oncology",
+          "runnable": true,
+          "reasonIfBlocked": null,
+          "linkageStatus": "unlinked",
+          "criticalConflictCount": 0,
+          "benchmarkRunnable": true,
+          "outreachRunnable": false,
+          "reasonIfBenchmarkBlocked": null,
+          "reasonIfOutreachBlocked": "linkage_status::unlinked"
+        },
+        "cohortMembership": {
+          "authoritativeBreastOncology": true,
+          "retailOutreachReady": false,
+          "pharmacyPrescreen": false,
+          "screeningOnly": false
+        }
+      },
+      "trialSummary": {
+        "trialId": "NCT00911456",
+        "title": "Can 3D Ultrasound Be Used Reproducibly by Radiation Therapists in Partial Breast Image-Guided Radiation Therapy",
+        "compileStatus": "ready_auto",
+        "runtimeReadiness": {
+          "runnable": true,
+          "runtimeState": "runtime_ready_with_manual",
+          "reasonIfBlocked": null,
+          "deterministicPatientImpactingCount": 6,
+          "manualPatientImpactingCount": 2,
+          "unsupportedPatientImpactingCount": 0,
+          "unresolvedPatientImpactingCount": 0,
+          "coveragePct": 75.0,
+          "hasExclusionParseGap": false
+        }
+      },
+      "overallDecision": "manual_review_required",
+      "whyThisShowcase": "Shows that manual-family burden is surfaced explicitly rather than hidden behind a score.",
+      "canonicalTreeExcerpt": [
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::EXC::001",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.inclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.max",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MAX",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.max",
+          "criterionId": null,
+          "key": "demographics.age_years.max",
+          "status": "met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        }
+      ],
+      "criterionLevelExplanation": [
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::EXC::001",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.inclusion_context_other",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.max",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MAX",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.max",
+          "criterionId": null,
+          "key": "demographics.age_years.max",
+          "status": "met",
+          "reason": "Compared patient age to maximum age rule.",
+          "evaluator": "eval_demographics_age_max_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.age.min",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::STRUCT::AGE_MIN",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient age to minimum age rule.",
+          "evaluator": "eval_demographics_age_min_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "prefilter",
+          "familyId": "demographics.age.min",
+          "criterionId": null,
+          "key": "demographics.age_years.min",
+          "status": "met",
+          "reason": "Compared patient age to minimum age rule.",
+          "evaluator": "eval_demographics_age_min_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::001",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "demographics.sex.allowed",
+          "criterionId": "NCT00911456::6b1f0f21bca8b152::INC::002",
+          "key": null,
+          "status": "met",
+          "reason": "Compared patient sex to allowed sexes.",
+          "evaluator": "eval_demographics_sex_allowed_v1",
+          "evidenceRefs": [
+            "Patient/09064487-2114-42a6-bfba-46f677e86193"
+          ]
+        }
+      ],
+      "reviewNotes": "Manual-family burden is accepted as the correct posture; the pair remains runnable but requires reviewer adjudication.",
+      "evidenceCompletenessPct": 83.3,
+      "traceSummary": {
+        "metCount": 10,
+        "notMetCount": 0,
+        "unknownCount": 0,
+        "manualReviewRequiredCount": 2,
+        "fillableByQuestionnaireCount": 0,
+        "blockedByLinkageConflictCount": 0,
+        "notPatientRuleCount": 0
+      }
+    }
+  },
+  "workspaceVersion": {
+    "gitCommit": "ba83d958173bfb970247f2afa65ff13307e71108",
+    "gitDirty": true,
+    "gitStatusShort": [
+      "M app/src/pages/PharmaNavigator/spaces/ControlPlaneStudio.js",
+      " M externals/benchmarks/clinical_trials_micro_benchmark.py",
+      " M externals/clinical_trials_service/app/services/micro_benchmark_service.py",
+      " M externals/clinical_trials_service/tests/test_micro_benchmark_service.py",
+      "?? externals/benchmarks/clinical_trials_micro_benchmark_sme_review.py"
+    ]
+  }
+}

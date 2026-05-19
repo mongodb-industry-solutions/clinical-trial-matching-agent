@@ -1,0 +1,512 @@
+{
+  "benchmarkPackId": "breast_micro_benchmark_20260417_113254_983498",
+  "generatedAt": "2026-04-17T11:33:48.017916Z",
+  "gitCommit": "016ab19aaeb5b5e833496dd2e5270d2430d5634c",
+  "trialRuntimeTag": "clinical-trials-canonical-runtime",
+  "reviewMethod": "assistant_adjudicated_from_frozen_canonical_runtime_v1",
+  "contractVersions": {
+    "matcherVersion": "016ab19aaeb5b5e833496dd2e5270d2430d5634c",
+    "runtimeMode": "canonical_only",
+    "populationModes": [
+      "authoritative_oncology"
+    ],
+    "legacyBehaviorAllowed": false,
+    "legacyInputsUsed": [],
+    "trialContractVersion": "ctgov_det_ingest_v1",
+    "patientEvidenceProfileVersion": "patient_evidence_profile_v2",
+    "patientMatchProfileVersion": "patient_match_profile_v2",
+    "ruleFamilyRegistryVersion": "2026-04-03",
+    "trialVersionIds": {
+      "NCT00016406": "NCT00016406::d9fa4e14f4398b15",
+      "NCT00017095": "NCT00017095::3b2c94fe7bd82ed5",
+      "NCT00028704": "NCT00028704::fb977f2bc0b2c014",
+      "NCT00397761": "NCT00397761::a099a157909bfe98",
+      "NCT01099436": "NCT01099436::f0d3e974ccf719e7",
+      "NCT01572727": "NCT01572727::add278f12ffd8fac",
+      "NCT02003209": "NCT02003209::75590b43a6d268d8",
+      "NCT03500380": "NCT03500380::59b539433831f7bf",
+      "NCT05555706": "NCT05555706::e9cbb0b0a88f0b6f",
+      "NCT05744687": "NCT05744687::a4fcb1bc18dbb418",
+      "NCT05860465": "NCT05860465::75de60668c81556b",
+      "NCT07294534": "NCT07294534::6001005e27aed44e",
+      "NCT07413939": "NCT07413939::fad989d6ebe8566b"
+    }
+  },
+  "cases": {
+    "excluded": {
+      "showcaseCase": "excluded",
+      "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+      "trialId": "NCT07294534",
+      "direction": "patient_to_trials",
+      "populationMode": "authoritative_oncology",
+      "benchmarkPackId": "breast_micro_benchmark_20260417_113254_983498",
+      "patientSummary": {
+        "patientRef": "Patient/09064487-2114-42a6-bfba-46f677e86193",
+        "patientName": "Franchesca574 Harvey63",
+        "linkageStatus": "unlinked",
+        "runtimeReadiness": {
+          "mode": "authoritative_oncology",
+          "runnable": true,
+          "reasonIfBlocked": null,
+          "linkageStatus": "unlinked",
+          "criticalConflictCount": 0,
+          "benchmarkRunnable": true,
+          "outreachRunnable": false,
+          "reasonIfBenchmarkBlocked": null,
+          "reasonIfOutreachBlocked": "linkage_status::unlinked",
+          "benchmarkBlockedReasons": [],
+          "outreachBlockedReasons": [
+            "linkage_status::unlinked"
+          ],
+          "targetDiseaseWindow": "advanced_or_metastatic"
+        },
+        "cohortMembership": {
+          "authoritativeBreastOncology": true,
+          "retailOutreachReady": false,
+          "pharmacyPrescreen": false,
+          "screeningOnly": false,
+          "breastCancerStageIiIii": false,
+          "metastaticBreastCancer": true
+        }
+      },
+      "trialSummary": {
+        "trialId": "NCT07294534",
+        "title": "A Phase II/III Clinical Study to Evaluate the Efficacy and Safety of HLX87in Combination With HLX22 or Pertuzumab in the Neoadjuvant Therapy of HER2-Positive Bresat Cancer",
+        "compileStatus": "ready_with_review",
+        "runtimeReadiness": {
+          "runnable": true,
+          "runtimeState": "runtime_ready_with_manual",
+          "reasonIfBlocked": null,
+          "deterministicPatientImpactingCount": 9,
+          "manualPatientImpactingCount": 7,
+          "unsupportedPatientImpactingCount": 0,
+          "unresolvedPatientImpactingCount": 0,
+          "coveragePct": 56.2,
+          "hasExclusionParseGap": false
+        }
+      },
+      "overallDecision": "excluded",
+      "whyThisShowcase": "Shows a clear deterministic exclusion with evidence trace.",
+      "canonicalTreeExcerpt": [
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::004",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::005",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::006",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "oncology.advanced_or_metastatic.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::EXC::001",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated disease extent to trial requirement.",
+          "evaluator": "eval_oncology_advanced_or_metastatic_required_v1",
+          "evidenceRefs": [
+            "Observation/543a0a72-53b8-4755-bf60-293214e0a15e",
+            "Observation/76a9dc89-f78b-406d-9c62-97b69ffa320e",
+            "Observation/a58fe7c4-815a-40ce-80ca-fe61bfa04d74",
+            "Observation/abccb88a-5eed-476b-b485-2745eab0dde2",
+            "Observation/d245c34a-fd3a-4b7a-b96e-e348a7a60e5d"
+          ]
+        }
+      ],
+      "criterionLevelExplanation": [
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::004",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::005",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "biomarkers.HER2.status.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::006",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated HER2 status to trial requirement.",
+          "evaluator": "eval_biomarkers_her2_status_required_v1",
+          "evidenceRefs": [
+            "Observation/53787462-7228-427e-a509-2a8fba861255",
+            "Observation/56553600-baac-40e4-bc59-4bebcefa09b4",
+            "Observation/90ff1e62-dee9-432c-94bb-47dd04cf5672",
+            "Observation/c7461c87-0f95-46c0-8345-ea8b36d42dc9"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "oncology.advanced_or_metastatic.required",
+          "criterionId": "NCT07294534::6001005e27aed44e::EXC::001",
+          "key": null,
+          "status": "not_met",
+          "reason": "Compared curated disease extent to trial requirement.",
+          "evaluator": "eval_oncology_advanced_or_metastatic_required_v1",
+          "evidenceRefs": [
+            "Observation/543a0a72-53b8-4755-bf60-293214e0a15e",
+            "Observation/76a9dc89-f78b-406d-9c62-97b69ffa320e",
+            "Observation/a58fe7c4-815a-40ce-80ca-fe61bfa04d74",
+            "Observation/abccb88a-5eed-476b-b485-2745eab0dde2",
+            "Observation/d245c34a-fd3a-4b7a-b96e-e348a7a60e5d"
+          ]
+        },
+        {
+          "source": "criterion",
+          "familyId": "context.infection_recent_systemic_therapy",
+          "criterionId": "NCT07294534::6001005e27aed44e::INC::007",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.complex_disease_setting",
+          "criterionId": "NCT07294534::6001005e27aed44e::EXC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT07294534::6001005e27aed44e::EXC::002",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT07294534::6001005e27aed44e::EXC::004",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        }
+      ],
+      "reviewNotes": "At least one supported criterion excludes the patient in the frozen canonical run.",
+      "evidenceCompletenessPct": 60.0,
+      "traceSummary": {
+        "metCount": 8,
+        "notMetCount": 4,
+        "unknownCount": 0,
+        "manualReviewRequiredCount": 7,
+        "fillableByQuestionnaireCount": 1,
+        "blockedByLinkageConflictCount": 0,
+        "notPatientRuleCount": 1
+      }
+    },
+    "manual_review_required": {
+      "showcaseCase": "manual_review_required",
+      "patientRef": "Patient/6e965c83-1c3f-42bb-9604-f809c18bad6b",
+      "trialId": "NCT05555706",
+      "direction": "patient_to_trials",
+      "populationMode": "authoritative_oncology",
+      "benchmarkPackId": "breast_micro_benchmark_20260417_113254_983498",
+      "patientSummary": {
+        "patientRef": "Patient/6e965c83-1c3f-42bb-9604-f809c18bad6b",
+        "patientName": "Nelia669 Rolfson709",
+        "linkageStatus": "unlinked",
+        "runtimeReadiness": {
+          "mode": "authoritative_oncology",
+          "runnable": true,
+          "reasonIfBlocked": null,
+          "linkageStatus": "unlinked",
+          "criticalConflictCount": 0,
+          "benchmarkRunnable": true,
+          "outreachRunnable": false,
+          "reasonIfBenchmarkBlocked": null,
+          "reasonIfOutreachBlocked": "linkage_status::unlinked",
+          "benchmarkBlockedReasons": [],
+          "outreachBlockedReasons": [
+            "linkage_status::unlinked"
+          ],
+          "targetDiseaseWindow": "advanced_or_metastatic"
+        },
+        "cohortMembership": {
+          "authoritativeBreastOncology": true,
+          "retailOutreachReady": false,
+          "pharmacyPrescreen": false,
+          "screeningOnly": false,
+          "breastCancerStageIiIii": false,
+          "metastaticBreastCancer": true
+        }
+      },
+      "trialSummary": {
+        "trialId": "NCT05555706",
+        "title": "Study of B013 and Nab-Paclitaxel for Locally Advanced or Metastatic Triple Negative Breast Cancer",
+        "compileStatus": "ready_with_review",
+        "runtimeReadiness": {
+          "runnable": true,
+          "runtimeState": "runtime_ready_with_manual",
+          "reasonIfBlocked": null,
+          "deterministicPatientImpactingCount": 7,
+          "manualPatientImpactingCount": 9,
+          "unsupportedPatientImpactingCount": 0,
+          "unresolvedPatientImpactingCount": 0,
+          "coveragePct": 43.8,
+          "hasExclusionParseGap": false
+        }
+      },
+      "overallDecision": "manual_review_required",
+      "whyThisShowcase": "Shows that manual-family burden is surfaced explicitly rather than hidden behind a score.",
+      "canonicalTreeExcerpt": [
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::001",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::002",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::004",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        }
+      ],
+      "criterionLevelExplanation": [
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::001",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::002",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::004",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::005",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.exclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::EXC::006",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "manual.inclusion_context_other",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::INC::005",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        },
+        {
+          "source": "criterion",
+          "familyId": "oncology.advanced_or_metastatic.required",
+          "criterionId": "NCT05555706::e9cbb0b0a88f0b6f::INC::003",
+          "key": null,
+          "status": "manual_review_required",
+          "reason": "Criterion is not yet deterministic for automated matching.",
+          "evaluator": null,
+          "evidenceRefs": []
+        }
+      ],
+      "reviewNotes": "Manual-family burden is accepted as the correct posture; the pair remains runnable but requires reviewer adjudication.",
+      "evidenceCompletenessPct": 54.5,
+      "traceSummary": {
+        "metCount": 12,
+        "notMetCount": 0,
+        "unknownCount": 0,
+        "manualReviewRequiredCount": 9,
+        "fillableByQuestionnaireCount": 1,
+        "blockedByLinkageConflictCount": 0,
+        "notPatientRuleCount": 0
+      }
+    }
+  },
+  "workspaceVersion": {
+    "gitCommit": "016ab19aaeb5b5e833496dd2e5270d2430d5634c",
+    "gitDirty": true,
+    "gitStatusShort": [
+      "M README.md",
+      " M app/src/components/PharmaDesignSystem/PharmaDesignSystem.css",
+      " M app/src/components/PharmaDesignSystem/ReadinessScorecard.js",
+      " M app/src/components/PharmaMatching/CoverageMeter.js",
+      " M app/src/components/PharmaMatching/CriterionTreeView.js",
+      " M app/src/components/ReportCard/ReportCard.css",
+      " M app/src/components/ReportCard/ReportCard.js",
+      " M app/src/components/ReportForm/ReportForm.js",
+      " M app/src/pages/PharmaNavigator/PharmaNavigatorRouter.js",
+      " M app/src/pages/PharmaNavigator/spaces/ControlPlaneStudio.js",
+      " M app/src/pages/PharmaNavigator/spaces/MatchingStudio.js",
+      " M app/src/pages/PharmaNavigator/spaces/PatientCurationStudio.js",
+      " M app/src/pages/PharmaNavigator/spaces/PatternArticle.js",
+      " M app/src/pages/PharmaNavigator/spaces/PharmaLanding.js",
+      " M app/src/pages/PharmaNavigator/spaces/TrialIngestionStudio.js",
+      " M app/src/services/APIConfig.js",
+      " M app/src/services/APIService.js",
+      " M docs/clinical_trial_matching_production_grade_plan.md",
+      " M externals/benchmarks/clinical_trials_calibration_diagnostic.py",
+      " M externals/benchmarks/clinical_trials_corpus_proof.py",
+      " M externals/clinical_trials_service/app/routes/clinical_trials.py",
+      " M externals/clinical_trials_service/app/schemas.py",
+      " M externals/clinical_trials_service/app/services/ingest_service.py",
+      " M externals/clinical_trials_service/app/services/matcher.py",
+      " M externals/clinical_trials_service/app/services/micro_benchmark_service.py",
+      " M externals/clinical_trials_service/app/services/proof_service.py",
+      " M externals/clinical_trials_service/tests/test_ingestion.py",
+      " M externals/clinical_trials_service/tests/test_matching.py",
+      " M externals/clinical_trials_service/tests/test_micro_benchmark_service.py",
+      " M externals/clinical_trials_service/tests/test_proof_service.py",
+      " M externals/webservices/app.py",
+      " M externals/webservices/routes/ai_services_blueprint.py",
+      " M externals/webservices/routes/imaging_blueprint.py",
+      " M externals/webservices/routes/pharma_blueprint.py",
+      " M externals/webservices/s3_helper.py",
+      " M externals/webservices/services/patient_curation.py",
+      " M externals/webservices/services/pharma_services.py",
+      " M externals/webservices/tests/test_patient_curation.py",
+      " M externals/webservices/tests/test_trial_matching_foundation.py",
+      " M makefile",
+      "?? .github/workflows/clinical-trials-demo.yml",
+      "?? docs/clinical_trial_matching_accuracy_execution_plan.md",
+      "?? docs/clinical_trial_matching_stage_ii_iii_demonstrator_plan.md",
+      "?? externals/benchmarks/clinical_trials_query_profiles.py",
+      "?? externals/webservices/tests/test_imaging_blueprint.py",
+      "?? primaria.js",
+      "?? scripts/clinical_trials_demo.sh"
+    ]
+  }
+}

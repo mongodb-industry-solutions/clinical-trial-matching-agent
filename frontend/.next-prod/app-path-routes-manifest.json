@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/[...path]/route": "/api/[...path]",
+  "/api/backend/[...path]/route": "/api/backend/[...path]",
+  "/api/health/route": "/api/health",
+  "/api/ping/route": "/api/ping",
+  "/api/route": "/api",
+  "/api/trial-geo/[nctId]/route": "/api/trial-geo/[nctId]",
+  "/discovery/page": "/discovery",
+  "/favicon.ico/route": "/favicon.ico",
+  "/governance/page": "/governance",
+  "/literature/page": "/literature",
+  "/match/page": "/match",
+  "/page": "/",
+  "/patients/page": "/patients",
+  "/pharmaNavigator/[[...slug]]/page": "/pharmaNavigator/[[...slug]]"
+}

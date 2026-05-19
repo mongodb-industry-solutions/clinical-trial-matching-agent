@@ -1,0 +1,9 @@
+{
+  "status": 307,
+  "headers": {
+    "location": "/pharmaNavigator",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/literature/layout,_N_T_/literature/page,_N_T_/literature"
+  }
+}

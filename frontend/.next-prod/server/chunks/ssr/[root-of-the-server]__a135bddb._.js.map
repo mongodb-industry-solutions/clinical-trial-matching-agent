@@ -1,0 +1,1 @@
+{"version":3,"sources":["turbopack:///[project]/app/discovery/page.js"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function DiscoveryPage() {\n  redirect(\"/pharmaNavigator?space=ingestion\");\n}\n"],"names":[],"mappings":"gRAAA,EAAA,CAAA,CAAA,OAAA,IAAA,EAAA,EAAA,CAAA,CAAA,OAEe,SAAS,IACtB,CAAA,EAAA,EAAA,QAAA,AAAQ,EAAC,mCACX"}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["turbopack:///[project]/app/page.js"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function Home() {\n  redirect(\"/pharmaNavigator\");\n}\n"],"names":[],"mappings":"gRAAA,EAAA,CAAA,CAAA,OAAA,IAAA,EAAA,EAAA,CAAA,CAAA,OAEe,SAAS,IACtB,CAAA,EAAA,EAAA,QAAA,AAAQ,EAAC,mBACX"}

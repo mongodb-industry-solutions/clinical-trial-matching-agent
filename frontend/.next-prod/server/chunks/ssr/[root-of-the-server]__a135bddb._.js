@@ -1,0 +1,3 @@
+module.exports=[93695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},62212,a=>{a.n(a.i(66114))},72987,a=>{"use strict";a.s([])},86173,a=>{"use strict";a.s(["default",()=>c]),a.i(70396);var b=a.i(73727);function c(){(0,b.redirect)("/pharmaNavigator?space=ingestion")}}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__a135bddb._.js.map

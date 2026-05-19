@@ -1,153 +1,142 @@
-# Demo Template: Python Backend with Next.js Frontend
+# Clinical Trial Matching Agent
 
-This repository provides a template for creating a web application with a Python backend and a Next.js frontend. The backend is managed using uv for dependency management, while the frontend is built with Next.js, offering a modern React-based user interface.
+Clinical Trial Matching Agent is the solution library for automatic patient-to-trial and trial-to-patient matching. It is being extracted from Leafy Hospital's Pharma Navigator so it can evolve independently as a reusable MongoDB healthcare solution while still being embedded back into Leafy as one composed demo.
 
-## Table of Contents
+This repo is intended to become the source of truth for:
 
-- [Demo Template: Python Backend with Next.js Frontend](#demo-template-python-backend-with-nextjs-frontend)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
-    - [Create a New Repository](#create-a-new-repository)
-    - [GitHub Desktop Setup](#github-desktop-setup)
-    - [Backend Setup](#backend-setup)
-  - [DEMO README](#demo-readme)
+- deterministic clinical-trial matching logic
+- trial eligibility and evidence tooling
+- trial-ingestion and review workflows
+- matching-focused React surfaces and design system assets
 
-## Features
+## Scope
 
-- Python backend with a RESTful API powered by [FastAPI](https://fastapi.tiangolo.com/)
-- Next.js frontend for a responsive user interface
-- Dependency management with uv ([More info](https://docs.astral.sh/uv/))
-- Easy setup and configuration
+Included here today:
 
-## Prerequisites
+- extracted Leafy backend services and route layer for trial matching
+- extracted React compatibility layer for Pharma Navigator and matching workspaces
+- metadata-oriented FastAPI shell
+- solution manifest and boundary docs
 
-Before you begin, ensure you have met the following requirements:
+Kept outside this repo on purpose:
 
-- Python >=3.13,<3.14 - If you are Mac user, you can install Python 3.13 using this [link](https://www.python.org/downloads/).
-- Node.js 22 or higher
-- uv (install via [uv's official documentation](https://docs.astral.sh/uv/getting-started/installation/))
+- the general-purpose reasoning control plane
+- Foundry-specific extension logic
+- Leafy Hospital shell and non-trial workflows
 
-## Getting Started
+## Repository Layout
 
-Follow these steps to set up the project locally.
+```text
+backend/
+  main.py
+  src/clinical_trial_matching_agent/
+    leafy_extract/
+      routes/
+      services/
 
-### Create a New Repository
+frontend/
+  app/                     # lightweight standalone shell
+  leafy-react-compat/      # extracted React matching surfaces
 
-1. Navigate to the repository template on GitHub and click on **Use this template**.
-2. Create a new repository.
-3. **Do not** check the "Include all branches" option.
-4. Define a repository name following the naming convention: `<industry>-<project_name>-<highlighted_feature>`. For example, `fsi-leafybank-ai-personal-assistant` (use hyphens to separate words).
-   - The **industry** and **project name** are required; you can be creative with the highlighted feature.
-5. Provide a clear description for the repository, such as: "A repository template to easily create new demos by following the same structure."
-6. Set the visibility to **Internal**.
-7. Click **Create repository**.
+docs/
+  BOUNDARIES.md
+  COMPREHENSIVE_AI_DEMO.md
+  EXTRACTION_MAP.md
+  LEAFY_COMPOSITION.md
+  RECOVERY_BLUEPRINT_2026-05-05.md
+  RECOMMENDED_BLUEPRINT.md
 
-### GitHub Desktop Setup
-
-1. Install GitHub Desktop if you haven't already. You can download it from [GitHub Desktop's official website](https://desktop.github.com/).
-2. Open GitHub Desktop and sign in to your GitHub account.
-3. Clone the newly created repository:
-   - Click on **File** > **Clone Repository**.
-   - Select your repository from the list and click **Clone**.
-4. Create your first branch:
-   - In the GitHub Desktop interface, click on the **Current Branch** dropdown.
-   - Select **New Branch** and name it `feature/branch01`.
-   - Click **Create Branch**.
-
-### Backend Setup
-
-1. (Optional) Set your project description and author information in the `pyproject.toml` file:
-   ```toml
-   description = "Your Description"
-   authors = ["Your Name <you@example.com>"]
-2. Open the project in your preferred IDE (the standard for the team is Visual Studio Code).
-3. Open the Terminal within Visual Studio Code.
-4. Ensure you are in the root project directory where the `makefile` is located.
-5. Execute the following commands:
-  - uv initialization
-    ````bash
-    make uv_init
-    ````
-  - uv sync
-    ````bash
-    make uv_sync
-    ````
-6. Verify that the `.venv` folder has been generated within the `/backend` directory.
-
-### Running Backend Locally
-
-After setting up the backend dependencies, you can run the development server:
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Start the FastAPI development server:
-   ```bash
-   uv run uvicorn main:app --host 0.0.0.0 --port 8000
-   ```
-
-3. The backend API will be accessible at http://localhost:8000
-
-**Note**: If port 8000 is already in use (e.g., by Docker containers), either stop the containers with `make clean` or use a different port like `--port 8001`.
-
-### Frontend Setup
-
-1. Navigate to the `frontend` folder.
-2. Install dependencies by running:
-```bash
-npm install
-```
-3. Start the frontend development server with:
-````bash
-npm run dev
-````
-4. The frontend will now be accessible at http://localhost:3000 by default, providing a user interface.
-
-### Git Hooks Setup (Recommended)
-
-This repository includes a pre-commit hook that automatically scans for secrets and credentials before each commit, preventing accidental exposure of sensitive data.
-
-**Setup (run once after cloning):**
-
-```bash
-chmod +x setup-hooks.sh
-./setup-hooks.sh
+solution-library.manifest.json
 ```
 
-This configures Git to use the `.githooks` directory and enables the pre-commit security scanner.
+## Recommended Blueprint
 
-**What it does:**
+The target product architecture and migration plan now live in:
 
-- Runs `security_check.sh` before every commit
-- Scans staged files for potential secrets (API keys, passwords, tokens, etc.)
-- Blocks the commit if security issues are detected
+- `docs/RECOMMENDED_BLUEPRINT.md`
+- `docs/COMPREHENSIVE_AI_DEMO.md`
+- `docs/RECOVERY_BLUEPRINT_2026-05-05.md`
+- `docs/BOOK_BLUEPRINT_2026-05-06.md`
 
-**If a commit is blocked:**
+## Standalone Quick Start
 
-1. Review the security issues listed in the output
-2. Remove or properly secure the flagged credentials
-3. Re-stage your changes and commit again
+1. Copy the local environment files:
+   - `cp backend/.env.example backend/.env`
+   - `cp frontend/.env.local.example frontend/.env.local`
 
-**Bypass (not recommended):**
+2. Install backend dependencies:
+   - `cd backend && uv sync`
 
-```bash
-git commit --no-verify
-```
+   Alternative:
+   - `cd backend && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
 
-### Kanopy Deployment
+3. Install frontend dependencies:
+   - `cd frontend && npm install`
 
-For deploying your demo to Kanopy (MongoDB's internal Kubernetes platform), see the [KANOPY_DEPLOYMENT_README.md](KANOPY_DEPLOYMENT_README.md) for detailed instructions on:
+4. Run the standalone backend:
+   - `cd backend && uv run uvicorn main:app --reload --port 8014`
 
-- Setting up Drone CI/CD pipeline
-- Configuring Kubernetes secrets
-- Choosing between separate pods vs multi-container deployments
-- Environment variables and secrets configuration
-- Resource management and troubleshooting
+5. Run the standalone frontend in another terminal:
+   - `cd frontend && npm run dev`
 
-## DEMO README
+6. Open `http://localhost:3014`
 
-<h1 style="color:red">REPLACE THE CONTENT OF THIS README WITH `README-demo.md` and DELETE THE `README-demo.md` FILE!!!!!!!!! </h1>
+The standalone repo now exposes two UI surfaces:
+
+- Product shell
+  - `/discovery` for canonical trial discovery, remote search, and ingestion
+  - `/patients` for patient evidence, cohort coverage, and demo enrichment
+  - `/match` for deterministic patient-to-trial and trial-to-patient screening
+  - `/governance` for benchmarks, family coverage, review queue, and unresolved criteria
+- Recovered Pharma Navigator workbench
+  - `/pharmaNavigator` for the continuous Navigator overview focused on ingestion, patient data, and bidirectional matching
+  - `/pharmaNavigator?space=ingestion` for Trial Ingestion Studio
+  - `/pharmaNavigator?space=patient` for Patient Curation Studio
+  - `/pharmaNavigator?space=matching&direction=patient_to_trials` for Find Trials for One Patient
+  - `/pharmaNavigator?space=matching&direction=trial_to_patients` for Find Patients for One Trial
+  - `/pharmaNavigator?space=control` for Control Plane & Proof
+
+If port `3014` is already in use, run the frontend on another port, for example:
+
+- `cd frontend && npm run dev -- --port 3015`
+
+Then open `http://localhost:3015`.
+
+## Validation
+
+Run the backend suites from one command:
+
+- `make backend-test`
+
+Build the frontend production bundle:
+
+- `make frontend-build`
+
+Run both before shipping changes:
+
+- `make verify`
+
+## API
+
+The standalone backend exposes introspection endpoints for setup and extracted assets:
+
+- `GET /`
+- `GET /api/v1/agents/clinical-trial-matching/health`
+- `POST /api/v1/agents/clinical-trial-matching/invoke`
+- `GET /api/v1/manifest`
+- `GET /api/v1/extract/summary`
+- `GET /api/v1/setup/env-spec`
+- `GET /api/v1/setup/status`
+- `GET /api/v1/assets/compat-summary`
+
+## Environment Model
+
+The repo now owns its own local setup contract:
+
+- trial and patient collections
+- ClinicalTrials.gov ingestion defaults
+- Synthea/FHIR linkage defaults
+- deterministic matching mode flags
+- optional Voyage reranking
+
+This makes the package runnable outside Leafy while preserving the compatibility extracts that Leafy still embeds during the migration.

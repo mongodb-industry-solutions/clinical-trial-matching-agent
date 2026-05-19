@@ -1,0 +1,1040 @@
+/* ==========================================================================
+   Pharma Design System (PDS)
+   Shared CSS design system for the Clinical Trials Navigator product.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Semantic Color System)
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Pipeline stage colors */
+  --pharma-source: #7b8794;
+  --pharma-source-bg: #f2f4f5;
+  --pharma-canonical: #1254ff;
+  --pharma-canonical-bg: #edf3ff;
+  --pharma-runtime: #00684A;
+  --pharma-runtime-bg: #e3fcf1;
+
+  /* Evaluation status colors */
+  --pharma-fail: #b42318;
+  --pharma-fail-bg: #fff4f2;
+  --pharma-unknown: #b54708;
+  --pharma-unknown-bg: #fffaeb;
+  --pharma-manual: #0e7490;
+  --pharma-manual-bg: #ecfeff;
+  --pharma-conflict: #dc2626;
+  --pharma-conflict-bg: #fef2f2;
+  --pharma-fillable: #027857;
+  --pharma-fillable-bg: #ecfdf3;
+
+  /* Text */
+  --pharma-text: #001e2b;
+  --pharma-text-secondary: #5f6b76;
+  --pharma-text-muted: #889397;
+
+  /* Surface & chrome */
+  --pharma-border: #d7e3dd;
+  --pharma-bg: #f5f7f6;
+  --pharma-white: #ffffff;
+  --pharma-surface: #ffffff;
+
+  /* Brand */
+  --pharma-brand: #00684A;
+  --pharma-brand-light: #00ed64;
+
+  /* Radii */
+  --pharma-radius-sm: 6px;
+  --pharma-radius-md: 12px;
+  --pharma-radius-lg: 16px;
+  --pharma-radius-pill: 999px;
+
+  /* Shadows */
+  --pharma-shadow-sm: 0 4px 12px rgba(0, 30, 43, 0.04);
+  --pharma-shadow-md: 0 10px 26px rgba(0, 30, 43, 0.06);
+  --pharma-shadow-lg: 0 18px 46px rgba(0, 30, 43, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Global font family
+   -------------------------------------------------------------------------- */
+
+.pds-page,
+.pds-card,
+.pds-card-flush,
+.pds-btn,
+.pds-input,
+.pds-select,
+.pds-tab,
+.pds-chip {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Layout
+   -------------------------------------------------------------------------- */
+
+.pds-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.pds-space-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pds-card {
+  background: var(--pharma-white);
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-lg);
+  padding: 16px;
+  box-shadow: var(--pharma-shadow-sm);
+}
+
+.pds-card-flush {
+  background: var(--pharma-white);
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-lg);
+  padding: 0;
+  box-shadow: var(--pharma-shadow-sm);
+}
+
+.pds-three-panel {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 260px;
+  gap: 16px;
+}
+
+@media (max-width: 1023px) {
+  .pds-three-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pds-two-panel {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 899px) {
+  .pds-two-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pds-section {
+  margin-bottom: 20px;
+}
+
+.pds-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--pharma-text);
+  margin-bottom: 12px;
+}
+
+.pds-divider {
+  border: none;
+  border-top: 1px solid var(--pharma-border);
+  margin: 16px 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. StatusChip
+   -------------------------------------------------------------------------- */
+
+.pds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--pharma-radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.pds-chip--met {
+  background: var(--pharma-runtime-bg);
+  border-color: var(--pharma-runtime);
+  color: var(--pharma-runtime);
+}
+
+.pds-chip--not-met {
+  background: var(--pharma-fail-bg);
+  border-color: var(--pharma-fail);
+  color: var(--pharma-fail);
+}
+
+.pds-chip--unknown {
+  background: var(--pharma-unknown-bg);
+  border-color: var(--pharma-unknown);
+  color: var(--pharma-unknown);
+}
+
+.pds-chip--manual {
+  background: var(--pharma-manual-bg);
+  border-color: var(--pharma-manual);
+  color: var(--pharma-manual);
+}
+
+.pds-chip--conflict {
+  background: var(--pharma-conflict-bg);
+  border-color: var(--pharma-conflict);
+  color: var(--pharma-conflict);
+}
+
+.pds-chip--fillable {
+  background: var(--pharma-fillable-bg);
+  border-color: var(--pharma-fillable);
+  color: var(--pharma-fillable);
+}
+
+.pds-chip--candidate {
+  background: var(--pharma-runtime-bg);
+  border-color: var(--pharma-runtime);
+  color: var(--pharma-runtime);
+}
+
+.pds-chip--excluded {
+  background: var(--pharma-fail-bg);
+  border-color: var(--pharma-fail);
+  color: var(--pharma-fail);
+}
+
+.pds-chip--needs-data {
+  background: var(--pharma-unknown-bg);
+  border-color: var(--pharma-unknown);
+  color: var(--pharma-unknown);
+}
+
+.pds-chip--source {
+  background: var(--pharma-source-bg);
+  border-color: var(--pharma-source);
+  color: var(--pharma-source);
+}
+
+.pds-chip--canonical {
+  background: var(--pharma-canonical-bg);
+  border-color: var(--pharma-canonical);
+  color: var(--pharma-canonical);
+}
+
+.pds-chip--neutral {
+  background: var(--pharma-white);
+  border-color: var(--pharma-border);
+  color: var(--pharma-text);
+}
+
+/* --------------------------------------------------------------------------
+   4. TransformationArrow
+   -------------------------------------------------------------------------- */
+
+.pds-transform-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.pds-transform-step {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.pds-transform-step--source {
+  background: var(--pharma-source-bg);
+  color: var(--pharma-source);
+}
+
+.pds-transform-step--canonical {
+  background: var(--pharma-canonical-bg);
+  color: var(--pharma-canonical);
+}
+
+.pds-transform-step--runtime {
+  background: var(--pharma-runtime-bg);
+  color: var(--pharma-runtime);
+}
+
+.pds-transform-arrow {
+  width: 32px;
+  text-align: center;
+  color: var(--pharma-text-muted);
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   5. ReadinessScorecard
+   -------------------------------------------------------------------------- */
+
+.pds-scorecard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.pds-scorecard-item {
+  padding: 12px 14px;
+  border-radius: var(--pharma-radius-sm);
+  background: var(--pharma-bg);
+  border: 1px solid var(--pharma-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.pds-scorecard-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--pharma-border);
+  border-radius: 3px 0 0 3px;
+}
+
+.pds-scorecard-item__label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pharma-text-muted);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.pds-scorecard-item__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--pharma-text);
+  line-height: 1.2;
+}
+
+/* Tone variants — accent the left bar + value color */
+.pds-scorecard-item--pass::before { background: var(--pharma-runtime); }
+.pds-scorecard-item--pass .pds-scorecard-item__value { color: var(--pharma-runtime); }
+
+.pds-scorecard-item--warn::before { background: var(--pharma-unknown); }
+.pds-scorecard-item--warn .pds-scorecard-item__value { color: var(--pharma-unknown); }
+
+.pds-scorecard-item--fail::before { background: var(--pharma-fail); }
+.pds-scorecard-item--fail .pds-scorecard-item__value { color: var(--pharma-fail); }
+
+.pds-scorecard-item--neutral::before { background: var(--pharma-border); }
+
+/* --------------------------------------------------------------------------
+   6. CriterionCard
+   -------------------------------------------------------------------------- */
+
+.pds-criterion-card {
+  display: flex;
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-md);
+  overflow: hidden;
+  background: var(--pharma-white);
+  transition: border-color 0.15s;
+  cursor: pointer;
+}
+
+.pds-criterion-card:hover {
+  border-color: var(--pharma-brand);
+  box-shadow: var(--pharma-shadow-sm);
+}
+
+/* Status left-border variants */
+.pds-criterion-card--met {
+  border-left: 4px solid var(--pharma-runtime);
+}
+
+.pds-criterion-card--not-met {
+  border-left: 4px solid var(--pharma-fail);
+}
+
+.pds-criterion-card--unknown {
+  border-left: 4px solid var(--pharma-unknown);
+}
+
+.pds-criterion-card--manual {
+  border-left: 4px solid var(--pharma-manual);
+}
+
+.pds-criterion-card--fillable {
+  border-left: 4px solid var(--pharma-fillable);
+}
+
+.pds-criterion-card--conflict {
+  border-left: 4px solid var(--pharma-conflict);
+}
+
+/* Card inner regions */
+.pds-criterion-card__body {
+  flex: 1;
+  padding: 12px 16px;
+}
+
+.pds-criterion-card__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pharma-text);
+}
+
+.pds-criterion-card__reason {
+  font-size: 13px;
+  color: var(--pharma-text-secondary);
+  margin-top: 4px;
+}
+
+.pds-criterion-card__icon {
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pds-criterion-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.pds-criterion-card__expand {
+  padding: 16px;
+  border-top: 1px solid var(--pharma-border);
+  background: var(--pharma-bg);
+  font-size: 13px;
+}
+
+.pds-criterion-card__detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pds-criterion-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   7. CriterionStatusBar
+   -------------------------------------------------------------------------- */
+
+.pds-status-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.pds-status-bar__segment {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.pds-status-bar__segment--met {
+  background: var(--pharma-runtime);
+}
+
+.pds-status-bar__segment--not-met {
+  background: var(--pharma-fail);
+}
+
+.pds-status-bar__segment--unknown {
+  background: var(--pharma-unknown);
+}
+
+.pds-status-bar__segment--manual {
+  background: var(--pharma-manual);
+}
+
+.pds-status-bar__segment--fillable {
+  background: var(--pharma-fillable);
+}
+
+.pds-status-bar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.pds-status-bar__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pds-status-bar__legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   8. FunnelVisualization
+   -------------------------------------------------------------------------- */
+
+.pds-funnel {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 16px 0;
+}
+
+.pds-funnel__stage {
+  text-align: center;
+  padding: 12px 20px;
+}
+
+.pds-funnel__count {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--pharma-text);
+}
+
+.pds-funnel__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--pharma-text-secondary);
+  margin-top: 2px;
+}
+
+.pds-funnel__arrow {
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+  color: var(--pharma-text-muted);
+  font-size: 20px;
+}
+
+.pds-funnel__filter {
+  background: var(--pharma-bg);
+  border-radius: var(--pharma-radius-md);
+  padding: 10px 16px;
+  border: 1px solid var(--pharma-border);
+  text-align: center;
+}
+
+.pds-funnel__filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pharma-brand);
+}
+
+.pds-funnel__breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pds-funnel__breakdown-chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--pharma-radius-pill);
+  background: var(--pharma-bg);
+  border: 1px solid var(--pharma-border);
+  color: var(--pharma-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   9. ObjectCard
+   -------------------------------------------------------------------------- */
+
+.pds-object-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-md);
+  background: var(--pharma-white);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pds-object-card:hover {
+  border-color: var(--pharma-brand);
+  box-shadow: var(--pharma-shadow-sm);
+}
+
+.pds-object-card.selected {
+  border-color: var(--pharma-brand);
+  box-shadow: 0 0 0 2px rgba(0, 104, 74, 0.15);
+}
+
+.pds-object-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--pharma-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pharma-brand);
+}
+
+.pds-object-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.pds-object-card__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pharma-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pds-object-card__subtitle {
+  font-size: 12px;
+  color: var(--pharma-text-secondary);
+  margin-top: 2px;
+}
+
+.pds-object-card__status {
+  flex-shrink: 0;
+}
+
+.pds-object-card__strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   10. SpaceHeader
+   -------------------------------------------------------------------------- */
+
+.pds-space-header {
+  margin-bottom: 24px;
+}
+
+.pds-space-header__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pds-space-header__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pharma-brand);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.pds-space-header__back:hover {
+  text-decoration: underline;
+}
+
+.pds-space-header__title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--pharma-text);
+}
+
+.pds-space-header__subtitle {
+  font-size: 14px;
+  color: var(--pharma-text-secondary);
+  margin-top: 4px;
+  max-width: 680px;
+}
+
+/* --------------------------------------------------------------------------
+   11. ThreePanelLayout Headers
+   -------------------------------------------------------------------------- */
+
+.pds-three-panel__header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid;
+}
+
+.pds-three-panel__header--source {
+  color: var(--pharma-source);
+  border-color: var(--pharma-source);
+}
+
+.pds-three-panel__header--canonical {
+  color: var(--pharma-canonical);
+  border-color: var(--pharma-canonical);
+}
+
+.pds-three-panel__header--runtime {
+  color: var(--pharma-runtime);
+  border-color: var(--pharma-runtime);
+}
+
+/* --------------------------------------------------------------------------
+   12. Navigation Tabs
+   -------------------------------------------------------------------------- */
+
+.pds-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--pharma-border);
+  margin-bottom: 20px;
+}
+
+.pds-tab {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pharma-text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+}
+
+.pds-tab:hover {
+  color: var(--pharma-text);
+}
+
+.pds-tab.active {
+  color: var(--pharma-brand);
+  border-bottom-color: var(--pharma-brand);
+}
+
+/* --------------------------------------------------------------------------
+   13. Buttons
+   -------------------------------------------------------------------------- */
+
+.pds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--pharma-radius-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+
+.pds-btn--primary {
+  background: var(--pharma-brand);
+  color: var(--pharma-white);
+  border-color: var(--pharma-brand);
+}
+
+.pds-btn--primary:hover {
+  background: #005C41;
+}
+
+.pds-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pds-btn--secondary {
+  background: var(--pharma-white);
+  color: var(--pharma-text);
+  border-color: var(--pharma-border);
+}
+
+.pds-btn--secondary:hover {
+  background: var(--pharma-bg);
+}
+
+.pds-btn--ghost {
+  background: none;
+  color: var(--pharma-brand);
+  border: none;
+  padding: 6px 8px;
+}
+
+.pds-btn--ghost:hover {
+  background: var(--pharma-bg);
+}
+
+/* --------------------------------------------------------------------------
+   14. Form Inputs
+   -------------------------------------------------------------------------- */
+
+.pds-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-sm);
+  background: var(--pharma-white);
+  color: var(--pharma-text);
+  transition: border-color 0.15s;
+}
+
+.pds-input:focus {
+  outline: none;
+  border-color: var(--pharma-brand);
+  box-shadow: 0 0 0 2px rgba(0, 104, 74, 0.1);
+}
+
+.pds-select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-sm);
+  background: var(--pharma-white);
+  color: var(--pharma-text);
+  transition: border-color 0.15s;
+  appearance: auto;
+}
+
+.pds-select:focus {
+  outline: none;
+  border-color: var(--pharma-brand);
+  box-shadow: 0 0 0 2px rgba(0, 104, 74, 0.1);
+}
+
+.pds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pds-field__label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pharma-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   15. KV Grid
+   -------------------------------------------------------------------------- */
+
+.pds-kv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.pds-kv-grid span {
+  display: block;
+  font-size: 11px;
+  color: var(--pharma-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pds-kv-grid strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pharma-text);
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   16. Animations
+   -------------------------------------------------------------------------- */
+
+@keyframes pds-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pds-fade-in {
+  animation: pds-fadeIn 0.3s ease forwards;
+}
+
+@keyframes pds-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pds-pulse {
+  animation: pds-pulse 1.5s infinite;
+}
+
+@keyframes pds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pds-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--pharma-border);
+  border-top-color: var(--pharma-brand);
+  border-radius: 50%;
+  animation: pds-spin 0.6s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   17. Utility Classes
+   -------------------------------------------------------------------------- */
+
+.pds-muted {
+  color: var(--pharma-text-muted);
+  font-size: 13px;
+}
+
+.pds-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.pds-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: var(--pharma-radius-sm);
+  font-size: 13px;
+}
+
+.pds-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--pharma-text-muted);
+}
+
+.pds-scrollable {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.pds-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   18. Space Selector Landing Cards
+   -------------------------------------------------------------------------- */
+
+.pds-space-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .pds-space-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pds-space-card {
+  padding: 14px 16px;
+  border: 1px solid var(--pharma-border);
+  border-radius: var(--pharma-radius-lg);
+  background: var(--pharma-white);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pds-space-card:hover {
+  border-color: var(--pharma-brand);
+  box-shadow: none;
+  transform: none;
+}
+
+.pds-space-card__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--pharma-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.pds-space-card__icon--ingestion {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.pds-space-card__icon--patient {
+  background: #f0fdf4;
+  color: #00684A;
+}
+
+.pds-space-card__icon--matching {
+  background: #fefce8;
+  color: #f59e0b;
+}
+
+.pds-space-card__icon--control {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.pds-space-card__icon--pattern {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.pds-space-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pharma-text);
+}
+
+.pds-space-card__desc {
+  font-size: 13px;
+  color: var(--pharma-text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.pds-space-card__transform {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pharma-brand);
+  margin-top: 10px;
+}

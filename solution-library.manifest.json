@@ -1,0 +1,21 @@
+{
+  "id": "clinical-trial-matching-agent",
+  "displayName": "Clinical Trial Matching Agent",
+  "kind": "solution_library",
+  "description": "Reusable automatic clinical-trial matching library for patient-to-trial and trial-to-patient workflows.",
+  "compositionModes": [
+    "standalone",
+    "leafy_embedded"
+  ],
+  "capabilities": [
+    "trial_ingestion",
+    "trial_review",
+    "patient_to_trial_matching",
+    "trial_to_patient_matching",
+    "eligibility_evidence"
+  ],
+  "interfaces": {
+    "manifestEndpoint": "/api/v1/manifest",
+    "extractSummaryEndpoint": "/api/v1/extract/summary"
+  }
+}

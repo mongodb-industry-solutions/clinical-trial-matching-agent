@@ -1,17 +1,19 @@
 import "./globals.css";
 import { Providers } from "./providers";
+import AppChrome from "../components/shell/AppChrome";
 
-// TODO: Update metadata with actual demo details
 export const metadata = {
-  title: "Demo Template",
-  description: "Industry Solutions Demo Template for NextJS",
+  title: "Clinical Trials Navigator · MongoDB",
+  description: "Clinical trial ingestion, patient graph review, and deterministic bidirectional matching — powered by MongoDB Atlas.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <AppChrome>{children}</AppChrome>
+        </Providers>
       </body>
     </html>
   );

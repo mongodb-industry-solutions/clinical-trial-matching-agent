@@ -10,6 +10,7 @@ set -eu
 
 NAMESPACE="industrysolutions"
 DRONE_SERVER_URL="https://drone.corp.mongodb.com"
+DEFAULT_KUBECONFIG="${HOME}/.kube/config.staging:${HOME}/.kube/config.prod"
 
 # ── Colors ───────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; NC='\033[0m'
@@ -87,8 +88,18 @@ resolve_repo() {
 
 # ── 4. Verify prerequisites ─────────────────────────────────
 check_kubectl() {
-  command -v kubectl &>/dev/null || fail "kubectl not found. Install it first."
+  if [ -z "${KUBECONFIG:-}" ] && [ -f "${HOME}/.kube/config.staging" ] && [ -f "${HOME}/.kube/config.prod" ]; then
+    export KUBECONFIG="$DEFAULT_KUBECONFIG"
+  fi
+
+  command -v kubectl &>/dev/null || fail "kubectl not found. Install it first with: brew install kubectl"
   ok "kubectl found"
+}
+
+check_context() {
+  local context="$1"
+  kubectl config get-contexts -o name 2>/dev/null | grep -Fxq "$context" \
+    || fail "Missing kubectl context: $context. Generate it first with kanopy-oidc kube setup/login."
 }
 
 # ── 5. Set secrets ───────────────────────────────────────────
@@ -103,6 +114,7 @@ set_secret() {
 setup_secrets() {
   echo ""
   info "─── Staging kubernetes token ───"
+  check_context "api.staging.corp.mongodb.com"
   kubectl config use-context api.staging.corp.mongodb.com
   kubectl config set-context --current --namespace="$NAMESPACE"
   local staging_token
@@ -111,6 +123,7 @@ setup_secrets() {
 
   echo ""
   info "─── Production kubernetes token ───"
+  check_context "api.prod.corp.mongodb.com"
   kubectl config use-context api.prod.corp.mongodb.com
   kubectl config set-context --current --namespace="$NAMESPACE"
   local prod_token

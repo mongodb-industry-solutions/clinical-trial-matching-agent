@@ -1,0 +1,98 @@
+.pharma-stepper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 12px 0 16px;
+}
+
+.pharma-stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 160px;
+  z-index: 0;
+}
+
+.pharma-stepper-item::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: calc(50% + 22px);
+  width: calc(100% - 44px);
+  height: 2px;
+  background-color: #d1d5db;
+  z-index: -1;
+}
+
+.pharma-stepper-item:last-child::after {
+  display: none;
+}
+
+.pharma-stepper-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  background: #ffffff;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition: all 0.35s ease;
+  z-index: 1;
+}
+
+.pharma-stepper-circle.current {
+  border-color: #00684A;
+  background: #00684A;
+  color: #ffffff;
+  animation: pharma-step-pulse 1.6s ease-in-out infinite;
+}
+
+.pharma-stepper-circle.completed {
+  border-color: #00ED64;
+  background: #00ED64;
+  color: #001E2B;
+  cursor: pointer;
+}
+
+.pharma-stepper-circle.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pharma-stepper-label {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.pharma-stepper-label.current {
+  color: #00684A;
+}
+
+.pharma-stepper-label.completed {
+  color: #001E2B;
+}
+
+@keyframes pharma-step-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 104, 74, 0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 104, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 104, 74, 0); }
+}
+
+@media (max-width: 820px) {
+  .pharma-stepper-item {
+    min-width: 80px;
+  }
+
+  .pharma-stepper-label {
+    font-size: 10px;
+  }
+}

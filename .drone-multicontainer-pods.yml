@@ -55,10 +55,10 @@ steps:
     settings:
       chart: mongodb/web-app
       chart_version: 4.30.0
-      add_repos: [mongodb=https://10gen.github.io/helm-charts]
+      add_repos: ["mongodb=https://10gen.github.io/helm-charts"]
       namespace: industrysolutions
       release: <your-demo-name>
-      values_files: ["environment/staging.yaml"]
+      values_files: ["environment/staging.multicontainer.yaml"]
       values:
         - "sidecarContainers[0].name=backend"
         - "sidecarContainers[0].image=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/<your-demo-name>-backend:git-${DRONE_COMMIT_SHA:0:7}"
@@ -145,12 +145,14 @@ steps:
     settings:
       chart: mongodb/web-app
       chart_version: 4.30.0
-      add_repos: [mongodb=https://10gen.github.io/helm-charts]
+      add_repos: ["mongodb=https://10gen.github.io/helm-charts"]
       namespace: industrysolutions
       release: <your-demo-name>-prod
-      values_files: ["environment/production.yaml"]
+      values_files: ["environment/production.multicontainer.yaml"]
       values:
+        - "sidecarContainers[0].name=backend"
         - "sidecarContainers[0].image=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/<your-demo-name>-backend-prod:git-${DRONE_COMMIT_SHA:0:7}"
+        - "sidecarContainers[0].containerPort=8000"
         - "image.tag=git-${DRONE_COMMIT_SHA:0:7}"
         - "image.repository=795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/<your-demo-name>-frontend-prod"
         - "ingress.enabled=true"

@@ -1,3 +1,14 @@
+# Clinical Trial Matching Agent Kanopy Deployment
+
+This repository is now wired for the multi-container Kanopy deployment path by default:
+
+- `.drone.yml` is checked in and deploys `staging` and `main`
+- the frontend runs as the public web container on `8080`
+- the backend runs as a sidecar on `8000`
+- Kanopy secret groups are split by environment:
+  - `clinical-trial-matching-agent-staging`
+  - `clinical-trial-matching-agent-production`
+
 # Step 1: Activate Drone UI
 
 ## Configure Drone Pipeline
@@ -46,6 +57,17 @@ The script will:
 3. Switch kubectl contexts to staging and production to extract tokens
 4. Run `drone secret update` (or `add`) for all 4 secrets
 
+This repo also includes a second helper for the runtime application secrets that must exist in Kanopy `ksec`:
+
+```bash
+scripts/promote-kanopy-app-secrets.sh
+```
+
+By default it promotes:
+
+- `staging` -> `clinical-trial-matching-agent-staging`
+- `production` -> `clinical-trial-matching-agent-production`
+
 #### Option B: Manual Setup via Drone Web UI
 
 You can also add secrets through the Drone web UI:
@@ -92,7 +114,14 @@ NAMESPACE=industrysolutions
 
 Copy each command's output and paste it as the secret value in the Drone UI.
 
-## Step 2: Choose Deployment Type
+## Step 2: Deployment Type
+
+This repo is already configured to use the multi-container pod deployment. Use `.drone.yml` as the active Drone pipeline.
+
+The template files are still kept for reference:
+
+- `.drone-multicontainer-pods.yml`
+- `.drone-seperate-pods.yml`
 
 Based on the Drone configuration files available in this repository, you can choose between two deployment architectures:
 
@@ -165,6 +194,13 @@ This deployment approach runs frontend and backend as containers within the same
 
 ### Final Setup Steps (Required for Both Options)
 
+For this repo, the checked-in `.drone.yml` already targets:
+
+- `staging` branch -> `clinical-trial-matching-agent-staging`
+- `main` branch -> `clinical-trial-matching-agent-production`
+
+If you customize the release name or ingress host later, update `.drone.yml` and the `environment/*.multicontainer.yaml` files together.
+
 After choosing your deployment type and updating the `.drone.yml` file:
 
 1. **Replace demo name placeholders**: Search for `<your-demo-name>` throughout the file and replace with your actual demo name (e.g., for this template you might use `python-nextjs-demo` or something more specific to your use case)
@@ -180,10 +216,12 @@ After setting up your deployment type, you need to configure environment variabl
 
 ### Environment Configuration Files
 
-The repository includes two environment configuration files:
+The repository includes two general environment configuration files plus two dedicated multi-container variants:
 
 - `environment/staging.yaml` - Configuration for staging environment
 - `environment/production.yaml` - Configuration for production environment
+- `environment/staging.multicontainer.yaml` - Combined frontend + backend sidecar staging deployment
+- `environment/production.multicontainer.yaml` - Combined frontend + backend sidecar production deployment
 
 ### Types of Configuration
 
@@ -193,15 +231,18 @@ These are non-sensitive configuration values that are injected as environment va
 
 ```yaml
 env:
-  NODE_ENV: staging # or prod for production
+  NODE_ENV: production
+  APP_ENV: staging # use production in the production env file
   AWS_REGION: us-east-1
-  BACKEND_URL: http://<service-name>:80 # Update based on your deployment type
+  PORT: "8080"
+  CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL: http://<service-name>:80
 ```
 
 **Required Updates:**
 
-- **For Separate Pods Deployment**: Set `BACKEND_URL` to `http://<your-demo-name>-backend:80`
-- **For Multi-Container Pod Deployment**: Set `BACKEND_URL` to `http://localhost:8000`
+- **For Separate Pods Deployment**: Set `CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL` to `http://<your-demo-name>-backend:80`
+- **For Multi-Container Pod Deployment**: Set `CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL` to `http://localhost:8000`
+- **For public frontend containers**: Set `PORT` to `8080`
 
 #### 2. Environment Secrets (`envSecrets` section)
 
@@ -216,13 +257,16 @@ envSecrets:
 
 #### 3. Sidecar Container Secrets (Multi-Container Pod Only)
 
-For multi-container pod deployments, uncomment and configure the `sidecarContainers` section:
+For multi-container pod deployments, the backend sidecar needs its own runtime env and secrets. Use the dedicated `*.multicontainer.yaml` files and configure the `sidecarContainers` section there:
 
 ```yaml
 sidecarContainers:
   - name: backend
     image: 795250896452.dkr.ecr.us-east-1.amazonaws.com/industrysolutions/<your-demo-name>-backend:latest
+    containerPort: 8000
     env:
+      - name: PORT
+        value: "8000"
       - name: MONGODB_URI
         valueFrom:
           secretKeyRef:
@@ -300,10 +344,33 @@ helm ksec set <secret-group> MONGODB_URI="your-mongodb-uri" DATABASE_NAME="your-
 
 ```
 
+For this repo, you can batch-promote the full application secret set into staging and production with:
+
+```bash
+scripts/promote-kanopy-app-secrets.sh
+```
+
+Use `DRY_RUN=true` first if you want to validate the target environments and key set without writing secrets.
+
+The script reads `backend/.env` by default and supports per-environment overrides with:
+
+- `STAGING_MONGODB_URI`
+- `STAGING_DATABASE_NAME`
+- `STAGING_VOYAGE_API_KEY`
+- `STAGING_CHATCOMPLETIONS_MODEL_ID`
+- `STAGING_EMBEDDINGS_MODEL_ID`
+- `PROT_MONGODB_URI`
+- `PROT_DATABASE_NAME`
+- `PROT_VOYAGE_API_KEY`
+- `PROT_CHATCOMPLETIONS_MODEL_ID`
+- `PROT_EMBEDDINGS_MODEL_ID`
+
+If these are absent, it falls back to the base values in `backend/.env`.
+
 #### 2. Update Environment Files
 
 1. **Update `environment/staging.yaml`:**
-   - Replace `<service-name>` with your actual service name
+   - Replace `<service-name>` with your actual service name for separate-pod deployments
    - Update secret names from `<secret-group>` to your actual secret names :
    - Configure cloud provider settings (AWS/GCP)
 
@@ -315,15 +382,17 @@ helm ksec set <secret-group> MONGODB_URI="your-mongodb-uri" DATABASE_NAME="your-
 
 **For Separate Pods Deployment:**
 
-- Update `BACKEND_URL` in environment files to: `http://<your-demo-name>-backend:80`
+- Update `CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL` in environment files to: `http://<your-demo-name>-backend:80`
+- Keep `PORT: "8080"` in the shared environment files
 - Use `envSecrets` section for secret configuration
 - Comment out `sidecarContainers` section
 
 **For Multi-Container Pod Deployment:**
 
-- Update `BACKEND_URL` in environment files to: `http://localhost:8000`
-- Uncomment and configure `sidecarContainers` section
-- Update the sidecar container image path with your demo name
+- Use `environment/staging.multicontainer.yaml` and `environment/production.multicontainer.yaml`
+- Set `CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL` to `http://localhost:8000`
+- Keep the frontend on `PORT: "8080"` and the backend sidecar on `PORT: "8000"`
+- Update the sidecar container image path with your demo name and the sidecar secret group
 
 #### 4. Verify Configuration
 
@@ -341,9 +410,11 @@ For a demo named `python-nextjs-demo`, your configuration might look like:
 ```yaml
 # staging.yaml
 env:
-  NODE_ENV: staging
+  NODE_ENV: production
+  APP_ENV: staging
   AWS_REGION: us-east-1
-  BACKEND_URL: http://python-nextjs-demo-backend:80 # For separate pods
+  PORT: "8080"
+  CLINICAL_TRIAL_MATCHING_AGENT_BACKEND_URL: http://python-nextjs-demo-backend:80 # For separate pods
 
 envSecrets:
   MONGODB_URI: python-nextjs-demo-secrets
@@ -363,7 +434,7 @@ If you encounter issues during deployment, consider the following steps:
 4. Ensure environment variables and secrets are correctly configured in your environment files
 5. Validate cloud provider-specific configurations (e.g., IRSA, GCP service accounts)
 6. `NEXT_*` variables are loaded during build time, so staging.yaml and env files are not used. I recommend not using `NEXT_*`; instead, use variables without the `NEXT_*` prefix and implement an API proxy pattern. More information in NEXTJS-ENV-VARIABLES.md: [Kanopy Deployment Resources](https://drive.google.com/drive/folders/1ICw8OERIeTRYIHI2AUOzYKsGM6fGylxl?usp=drive_link)
-7. The `NODE_ENV` variable is set to either `staging` or `production` depending on the branch you deploy from. This results in two separate instances of your application running—one for staging and one for production. Both instances may access shared resources, such as the same database or the same Voyage AI API key. When using a shared database, resource contention can occur. To mitigate this, consider implementing job scheduling or other resource management strategies.
+7. Keep `NODE_ENV=production` for Next.js and other production runtime expectations. Use a separate variable such as `APP_ENV=staging|production` to distinguish deployment stages. Staging and production may still access shared resources, such as the same database or the same Voyage AI API key. When using a shared database, resource contention can occur. To mitigate this, consider implementing job scheduling or other resource management strategies.
 
 ```bash
 # Get all pods in the namespace

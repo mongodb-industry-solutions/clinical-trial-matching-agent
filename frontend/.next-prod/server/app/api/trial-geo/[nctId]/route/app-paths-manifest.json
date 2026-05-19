@@ -1,0 +1,3 @@
+{
+  "/api/trial-geo/[nctId]/route": "app/api/trial-geo/[nctId]/route.js"
+}

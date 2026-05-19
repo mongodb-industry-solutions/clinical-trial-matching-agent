@@ -1,0 +1,1 @@
+{"version":3,"sources":["turbopack:///[project]/app/governance/page.js"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function GovernancePage() {\n  redirect(\"/pharmaNavigator?space=control\");\n}\n"],"names":[],"mappings":"gRAAA,EAAA,CAAA,CAAA,OAAA,IAAA,EAAA,EAAA,CAAA,CAAA,OAEe,SAAS,IACtB,CAAA,EAAA,EAAA,QAAA,AAAQ,EAAC,iCACX"}

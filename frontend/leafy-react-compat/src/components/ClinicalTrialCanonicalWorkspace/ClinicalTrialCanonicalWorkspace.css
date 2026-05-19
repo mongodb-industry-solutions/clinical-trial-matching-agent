@@ -1,0 +1,123 @@
+.ct-workspace-card {
+  margin-top: 14px;
+}
+
+.ct-workspace-summary {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ct-workspace-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.ct-workspace-tab {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ct-workspace-tab.active {
+  background: #00684a;
+  color: #fff;
+  border-color: #00684a;
+}
+
+.ct-workspace-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ct-runtime-banner {
+  margin-bottom: 14px;
+}
+
+.ct-tree-root-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ct-tree-node {
+  margin-left: calc(var(--ct-depth, 0) * 18px);
+}
+
+.ct-tree-node-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 3px solid rgba(0, 104, 74, 0.35);
+  border-radius: 16px;
+  background: #fff;
+  padding: 14px 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.ct-tree-node.runtime .ct-tree-node-card {
+  border-left-color: rgba(2, 132, 199, 0.35);
+}
+
+.ct-tree-node-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.ct-tree-node-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.ct-tree-node-line {
+  color: #0f172a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ct-tree-node-subtle {
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.ct-tree-node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ct-tree-node-grid span {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.ct-tree-node-grid strong {
+  color: #0f172a;
+  font-size: 13px;
+}
+
+.ct-tree-children {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
