@@ -18,7 +18,7 @@
     "@leafygreen-ui/palette": "^5.0.1",
     "@leafygreen-ui/tabs": "^14.2.5",
     "@leafygreen-ui/typography": "^20.1.9",
-    "axios": "^1.8.4",
+    "axios": "^1.18.0",
     "dotenv": "^17.2.2",
     "leaflet": "^1.9.4",
     "next": "^15.5.7",
