@@ -18,22 +18,25 @@
     "@leafygreen-ui/palette": "^5.0.1",
     "@leafygreen-ui/tabs": "^14.2.5",
     "@leafygreen-ui/typography": "^20.1.9",
-    "axios": "^1.8.4",
+    "axios": "^1.18.0",
     "dotenv": "^17.2.2",
     "leaflet": "^1.9.4",
-    "next": "^15.5.7",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.9.1",
+    "react-router-dom": "^7.18.4",
     "recharts": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.0",
     "license-checker": "^25.0.1",
     "tailwindcss": "^4"
+  },
+  "overrides": {
+    "postcss": "^8.5.18"
   }
 }
